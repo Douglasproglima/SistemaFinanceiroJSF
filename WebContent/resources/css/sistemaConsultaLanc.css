@@ -27,6 +27,7 @@ h1 {
 
 .grid td, .grid th {
 	padding: 3px;
+	font-size: 13px;
 }
 
 .grid .cabecalho {
