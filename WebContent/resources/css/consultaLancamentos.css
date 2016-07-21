@@ -31,9 +31,14 @@ td.situacao {
 	text-align: center;
 }
 
-td.acoes {
-	width: 40px;
-	text-align: center;
+td.status{
+	width: 20px;
+	text-align: left;
+}
+
+td.opcoes{
+	width: 10px;
+	text-align: left;
 }
 
 .grid .receita {
