@@ -26,7 +26,9 @@
 				</h:panelGroup>
 				
 				<h:outputLabel for="idDescricao" value="Descrição: " />
-				<h:inputText id="idDescricao" size="60" value="#{estoqueBean.itemEstoqueBean.descricao}" required="true" label="Descrição" >
+				<h:inputText id="idDescricao" size="60" value="#{estoqueBean.itemEstoqueBean.descricao}" 
+							 label="Descrição" required="true"  requiredMessage="Por favor, informe uma descrição."
+							 validatorMessage="Descrição deve ser informado com pelo ao menos 5 caracteres.">
 					<f:validateLength minimum="5" maximum="50"/>
 				</h:inputText>
 
