@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	  
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>3.15 - Conversores de Números</title>
+		<h:outputStylesheet library="css" name="sistemaCadastroLanc.css" />
+		<h:outputStylesheet library="css" name="consultaLancamentos.css" />
+		<h:outputStylesheet library="css" name="sistemaConsultaLanc.css" />
+	</h:head>
+	<h:body>
+		<h1>Estoque</h1>
+		<h:form id="FrmChecagemEstoque">
+			<h:messages showSummary="false" showDetail="true"/>
+			
+			<h:panelGrid columns="2" styleClass="form-grid" columnClasses="label, campo">
+				<h:outputLabel for="idCodProduto" value="Código: " />
+				<h:panelGroup>
+					<h:inputText id="idCodProduto" size="12" value="#{estoqueBean.itemEstoqueBean.codigoProduto}"
+								 converter="javax.faces.Integer" label="Código do Produto" required="true"/>
+					<h:message for="idCodProduto" showSummary="true" showDetail="false"/>
+				</h:panelGroup>
+				
+				<h:outputLabel for="idDescricao" value="Descrição: " />
+				<h:inputText id="idDescricao" size="60" value="#{estoqueBean.itemEstoqueBean.descricao}" required="true" label="Descrição" >
+					<f:validateLength minimum="5" maximum="50"/>
+				</h:inputText>
+
+				<h:outputLabel for="idQtde" value="Qtde: " />
+				<h:panelGroup>
+					<h:inputText id="idQtde" size="12" value="#{estoqueBean.itemEstoqueBean.quantidade}" 
+								 label="Quantidade" required="true">
+						<f:validateLongRange minimum="0" maximum="999"/>
+						<f:converter converterId="javax.faces.Short"/>
+					</h:inputText>
+					<h:message for="idQtde" showSummary="true" showDetail="false"/>
+				</h:panelGroup>
+				
+				<h:outputLabel for="idValor" value="Qtde: " />
+				<h:panelGroup>
+					<h:inputText id="idValor" size="12" value="#{estoqueBean.itemEstoqueBean.valorUnitario}"
+								 label="Valor Unitário" required="true">
+						<f:validateDoubleRange minimum="0" maximum="9999"/>
+						<f:convertNumber minFractionDigits="2" locale="pt_BR"/>
+					</h:inputText>
+					<h:message for="idValor" showSummary="true" showDetail="false"/>
+				</h:panelGroup>
+				
+				<h:outputLabel for="idDataChecagem" value="Data Checagem: " />
+				<h:panelGroup>
+					<h:inputText id="idDataChecagem" size="12" value="#{estoqueBean.itemEstoqueBean.dataChecagem}"
+								 label="Data da Checagem" required="true">
+						<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+					</h:inputText>
+					<h:message for="idDataChecagem" showSummary="true" showDetail="false"/>
+				</h:panelGroup>				
+				
+				<h:outputLabel/>
+				<h:commandButton value="Incluir" action="#{estoqueBean.incluir}"/>	
+			</h:panelGrid>
+			
+			<br/>
+			
+			<h:dataTable var="varItemEstoque" value="#{estoqueBean.itensEstoque}" border="1"
+						 width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim, cor-nao">
+				
+				<h:column>
+					<f:facet name="header">Código</f:facet>
+					<h:outputText value="#{varItemEstoque.codigoProduto}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Descrição</f:facet>
+					<h:outputText value="#{varItemEstoque.descricao}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Qtde.</f:facet>
+					<h:outputText value="#{varItemEstoque.quantidade}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Valor Unit.</f:facet>
+					<h:outputText value="#{varItemEstoque.valorUnitario}" >
+						<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR"/>
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Data Checagem</f:facet>
+					<h:outputText value="#{varItemEstoque.dataChecagem}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Opções</f:facet>
+					<h:graphicImage library="imagens" name="editar.png" />
+					<h:graphicImage library="imagens" name="excluir.png" />
+				</h:column>	
+			</h:dataTable>
+		</h:form>
+
+	</h:body>
+</html>
