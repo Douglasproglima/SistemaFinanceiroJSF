@@ -30,4 +30,7 @@ public class EstoqueBean{
 		this.itemEstoqueBean = new ItemEstoqueBean();
 	}
 
+	public void limpar(){
+		this.itensEstoque.clear();
+	}
 }

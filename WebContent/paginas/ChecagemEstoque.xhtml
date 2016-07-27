@@ -55,14 +55,17 @@
 				<h:outputLabel for="idDataChecagem" value="Data Checagem: " />
 				<h:panelGroup>
 					<h:inputText id="idDataChecagem" size="12" value="#{estoqueBean.itemEstoqueBean.dataChecagem}"
-								 label="Data da Checagem" required="true">
-						<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+								 label="Data da Checagem" converter="com.douglasproglima.sistemafinanceiro.conversores.conversordatapersonalizado">
+						<!-- <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/> -->
 					</h:inputText>
 					<h:message for="idDataChecagem" showSummary="true" showDetail="false"/>
 				</h:panelGroup>				
 				
 				<h:outputLabel/>
-				<h:commandButton value="Incluir" action="#{estoqueBean.incluir}"/>	
+				<h:commandButton value="Incluir" action="#{estoqueBean.incluir}"/>
+				
+				<!-- Atributo 'immediate' pula algumas etapas do ciclo de vida do JSF-->
+				<h:commandButton value="Limpar" action="#{estoqueBean.limpar}" immediate="true"/>		
 			</h:panelGrid>
 			
 			<br/>
@@ -94,8 +97,8 @@
 
 				<h:column>
 					<f:facet name="header">Data Checagem</f:facet>
-					<h:outputText value="#{varItemEstoque.dataChecagem}" >
-						<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+					<h:outputText value="#{varItemEstoque.dataChecagem}" converter="com.douglasproglima.sistemafinanceiro.conversores.conversordatapersonalizado">
+						<!-- <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>  -->
 					</h:outputText>
 				</h:column>
 
