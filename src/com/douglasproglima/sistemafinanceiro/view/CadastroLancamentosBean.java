@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
@@ -42,7 +43,19 @@ public class CadastroLancamentosBean implements Serializable{
 		
 		String msg = "Cadastro efetuado com sucesso!";
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-	}	
+	}
+	
+	//Este método será executado antes da validação referente ao ciclo de vida da requisição.
+	//Foi necessário implementar este método pois foi utilizar o atributo emidiate no componente pago da página
+	//Onde o mesmo será verificado através do campo data do pagamento.
+	public void lancamentoPagoAlterado(ValueChangeEvent evt){
+		
+		this.lancamento.setPago((Boolean) evt.getNewValue());
+		this.lancamento.setDataPagamento(null);
+		
+		//Força o JSF a pular para última fase do ciclo de vida da requisição que reinderizar
+		FacesContext.getCurrentInstance().renderResponse();
+	}
 
 	public TipoLancamento[] getTiposLancamentos(){
 		return TipoLancamento.values();

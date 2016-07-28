@@ -48,6 +48,12 @@
     <param-value>true</param-value>
   </context-param>
   
+  <!-- Valida os campos nullos na página quando for utilizar a tag <f:validator /> -->
+  <context-param>
+    <param-name>javax.faces.VALIDATE_EMPTY_FIELDS</param-name>
+    <param-value>true</param-value>
+  </context-param>  
+  
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>

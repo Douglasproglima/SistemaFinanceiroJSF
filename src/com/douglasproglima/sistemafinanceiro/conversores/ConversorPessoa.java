@@ -15,6 +15,7 @@ public class ConversorPessoa implements Converter{
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent componente, String valor) {
 		Pessoa retornoPessoa = null;
+		
 		if(valor != null){
 			GestaoPessoas gestaoPessoas = new GestaoPessoas();
 			retornoPessoa = gestaoPessoas.filtrarPorCodigo(new Integer(valor));

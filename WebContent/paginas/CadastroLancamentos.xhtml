@@ -33,8 +33,10 @@
 
 				<h:outputLabel value="Status: "/>
 				<h:panelGroup>
-					<h:selectBooleanCheckbox id="idCheckBoxContaPagar" 
-											 value="#{cadastroLancamentosBean.lancamento.pago}"/>
+					<h:selectBooleanCheckbox id="idCheckBoxContaPagar"  immediate="true" 
+										     valueChangeListener="#{cadastroLancamentosBean.lancamentoPagoAlterado}"
+											 value="#{cadastroLancamentosBean.lancamento.pago}"
+											 onchange="submit();"/>
 					<h:outputLabel for="idCheckBoxContaPagar" value="Conta Paga" />
 				</h:panelGroup>	
 				
@@ -64,12 +66,16 @@
 					<f:convertDateTime for="idDataVenc" pattern="dd/MM/yyyy" />	 
 				</h:inputText>
 												
-				<h:outputLabel value="Data Pagamento: " />
+				<h:outputLabel value="Data Pagamento: " rendered="#{cadastroLancamentosBean.lancamento.pago}"/>
 				<h:inputText size="12" label="Data de Pagamento"
-							 value="#{cadastroLancamentosBean.lancamento.dataPagamento}" >
+							 value="#{cadastroLancamentosBean.lancamento.dataPagamento}" 
+							 rendered="#{cadastroLancamentosBean.lancamento.pago}">
 					
-					<f:convertDateTime for="idDataVenc" pattern="dd/MM/yyyy" />	
+					<f:convertDateTime pattern="dd/MM/yyyy" />	
 					<f:validator validatorId="com.douglasproglima.DataFutura"/>
+					<f:validator validatorId="com.douglasproglima.RequirimentoCondicional"/>
+					<f:attribute name="atributoPersonalizadoChecado" 
+								 value="#{cadastroLancamentosBean.lancamento.pago}"/>
 				</h:inputText>
 				
 				<h:outputLabel/>
