@@ -8,13 +8,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="lancamento")
 public class Lancamento implements Serializable{
@@ -40,7 +40,7 @@ public class Lancamento implements Serializable{
 	private TipoLancamento tipo;
 	
 	@ManyToOne
-	@JoinColumn(name="codigo_pessoa", foreignKey = @ForeignKey(name = "FK_LancamentoXPessoa"))
+	@JoinColumn(name="codigo_pessoa")
 	private Pessoa pessoa;
 	
 	//Métodos getters e setters Bean
