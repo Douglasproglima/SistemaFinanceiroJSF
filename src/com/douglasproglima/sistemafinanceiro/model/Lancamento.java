@@ -4,16 +4,43 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="lancamento")
 public class Lancamento implements Serializable{
 	//Atributos
+	
+	@Column(name="codigo", nullable=false)
+	@Id
+	@GeneratedValue
 	private Integer codigo;
+	@Column(name="descricao", length=100)
 	private String descricao;
+	@Column(name="valor")
 	private BigDecimal valor;
+	@Column(name="data_vencimento")
 	private Date dataVencimento;
+	@Column(name="pago")
 	private  boolean pago;
+	@Column(name="data_pagamento")
 	private Date dataPagamento;
 
+	@Column(name="tipo")
+	@Enumerated(EnumType.STRING)
 	private TipoLancamento tipo;
+	
+	@ManyToOne
+	@JoinColumn(name="codigo_pessoa", foreignKey = @ForeignKey(name = "FK_LancamentoXPessoa"))
 	private Pessoa pessoa;
 	
 	//Métodos getters e setters Bean

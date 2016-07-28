@@ -37,7 +37,8 @@
 <!-- 		<property name="hbm2ddl.auto">update</property> -->
 
 		<!-- Mapeamento das entidades do hibernate que estão nas class com anotação @Entidy -->
-<!-- 		<mapping class="br.pro.delfino.drogaria.domain.Cidade"/> -->
+		<mapping class="com.douglasproglima.sistemafinanceirojsf.pessoa"/>
+		<mapping class="com.douglasproglima.sistemafinanceirojsf.lancamento"/>
 	</session-factory>
 
 </hibernate-configuration>

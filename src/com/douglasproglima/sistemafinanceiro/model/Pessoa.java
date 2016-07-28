@@ -2,8 +2,22 @@ package com.douglasproglima.sistemafinanceiro.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="pessoa")
 public class Pessoa implements Serializable{
+	@Column(name="codigo", nullable=false)
+	@Id
+	@GeneratedValue
 	private Integer codigo;
+	
+	@Column(name="nome", length=100, nullable=false)
 	private String nome;
 	
 	//Construtor default
