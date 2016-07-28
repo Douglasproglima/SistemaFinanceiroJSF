@@ -14,7 +14,7 @@
 	<h:body>
 		<h1>3.13 - Lançamentos</h1>
 		<h:form id="FrmConsultaLancamento">
-			<h:commandButton value="Novo Lançamento" />
+			<h:button value="Novo Lançamento" outcome="CadastroLancamentos"/>
 			
 			<h:dataTable var="varLancamentos" value="#{consultaLancamentosBean.lancamentos}" 
 						 width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"

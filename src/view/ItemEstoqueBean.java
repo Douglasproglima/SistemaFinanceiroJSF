@@ -1,11 +1,8 @@
-package com.douglasproglima.sistemafinanceirojsf.view;
+package view;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.faces.bean.ManagedBean;
-
-@ManagedBean
 public class ItemEstoqueBean {
 	private Integer codigoProduto;
 	private String descricao;

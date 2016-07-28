@@ -1,4 +1,4 @@
-package com.douglasproglima.sistemafinanceiro.conversores;
+package conversores;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,7 +13,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter("com.douglasproglima.sistemafinanceiro.conversores.conversordatapersonalizado")
+@FacesConverter("com.douglasproglima.ConversorDataPersonalizado")
 public class ConversorDataPersonalizado implements Converter{
 
 	private static final DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");

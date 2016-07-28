@@ -15,41 +15,63 @@
 	<h:body>
 		<h1>Novo Lançamento</h1>
 		<h:form id="FrmCadastroLancamento">
-			<h:commandButton value="Novo" />
-			<h:commandButton value="Consulta" />
+			<h:button value="Novo" outcome="CadastroLancamentos"/>
+			<h:button value="Consulta" outcome="ConsultaLancamentos"/>
+			
+			<h:message showSummary="true" showDetail="false" styleClass="form-mensagens" 
+					   errorClass="erros" infoClass="info"/>
 			
 			<h:panelGrid columns="2" styleClass="form-grid" columnClasses="label, campo">
-				<h:outputLabel value="Tipo: " />
-				<h:selectOneRadio>
-					<f:selectItem  itemLabel="Receita"/>
-					<f:selectItem  itemLabel="Despesa"/>
+				<h:outputLabel for="idTipo" value="Tipo: " />
+				<h:selectOneRadio id="idTipo" value="#{cadastroLancamentosBean.lancamento.tipo}" 
+								  required="true" label="Tipo do Lançamento">
+					<f:selectItems var="varTipoLancamento"  
+								   value="#{cadastroLancamentosBean.tiposLancamentos}" 
+								   itemLabel="#{varTipoLancamento.descricao}" 
+								   itemValue="#{varTipoLancamento}" />
 				</h:selectOneRadio>				
 
 				<h:outputLabel value="Status: "/>
 				<h:panelGroup>
-					<h:selectBooleanCheckbox/>
-					<h:outputLabel value="Conta Paga" />
+					<h:selectBooleanCheckbox id="idCheckBoxContaPagar" 
+											 value="#{cadastroLancamentosBean.lancamento.pago}"/>
+					<h:outputLabel for="idCheckBoxContaPagar" value="Conta Paga" />
 				</h:panelGroup>	
 				
-				<h:outputLabel value="Pessoa: " />
+				<h:outputLabel for="idPessoa" value="Pessoa: " />
 				<h:selectOneMenu>
-					<f:selectItem itemValue="Supermercado Casa Rena"/>
+					<f:selectItem id="idPessoa" itemValue="Supermercado Casa Rena"/>
 				</h:selectOneMenu>
 				
-				<h:outputLabel value="Descrição: " />
-				<h:inputText size="60" />
+				<h:outputLabel for="idDescricao" value="Descrição: " />
+				<h:inputText id="idDescricao" size="60" value="#{cadastroLancamentosBean.lancamento.descricao}"  
+							 required="true" label="Descrição"/>
 				
-				<h:outputLabel value="Valor: " />
-				<h:inputText size="12" />
+				<h:outputLabel for="idValor" value="Valor: " />
+				<h:inputText id="idValor" size="12" value="#{cadastroLancamentosBean.lancamento.valor}" 
+							 required="true" label="Valor">
+				
+					<f:convertNumber for="idValor" minFractionDigits="2" maxIntegerDigits="2" locale="pt_BR"/>
+					<f:validateDoubleRange for="idValor" minimum="0"/>			 
+				</h:inputText>
 								
-				<h:outputLabel value="Data Vencimento: " />
-				<h:inputText size="12" />
+				<h:outputLabel for="idDataVenc" value="Data Vencimento: " />
+				<h:inputText id="idDataVenc" size="12" value="#{cadastroLancamentosBean.lancamento.dataVencimento}"
+							 required="true" label="Data de Vencimento">
+							 
+					<f:convertDateTime for="idDataVenc" pattern="dd/MM/yyyy" />	 
+				</h:inputText>
 												
 				<h:outputLabel value="Data Pagamento: " />
-				<h:inputText size="12" />
+				<h:inputText size="12" label="Data de Pagamento"
+							 value="#{cadastroLancamentosBean.lancamento.dataPagamento}" >
+					<f:convertDateTime for="idDataVenc" pattern="dd/MM/yyyy" />	
+				</h:inputText>
 				
 				<h:outputLabel/>
-				<h:commandButton value="Cadastrar" />	
+				<h:commandButton id="btCadastrar" value="Cadastrar" 
+								 action="#{cadastroLancamentosBean.cadastrar}"
+								 />	
 			</h:panelGrid>
 			
 			<br/>

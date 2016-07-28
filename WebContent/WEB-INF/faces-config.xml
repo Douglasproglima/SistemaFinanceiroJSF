@@ -8,6 +8,6 @@
 
 	<!-- Tag para informa o local onde se encontra o arquivo contendo as mensagems de erro personalizadas -->
 	<application>
-		<message-bundle>com.douglasproglima.sistemafinanceiro.resources.Messages</message-bundle>
+		<message-bundle>resources.Messages</message-bundle>
 	</application>
 </faces-config>

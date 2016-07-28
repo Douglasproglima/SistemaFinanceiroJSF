@@ -56,7 +56,7 @@
 				<h:panelGroup>
 					<h:inputText id="idDataChecagem" size="12" value="#{estoqueBean.itemEstoqueBean.dataChecagem}"
 								 label="Data da Checagem" 
-								 converter="com.douglasproglima.sistemafinanceiro.conversores.conversordatapersonalizado"
+								 converter="com.douglasproglima.ConversorDataPersonalizado"
 								 >
 						<f:validator validatorId="com.douglasproglima.DiaUtil"/>
 						<!-- <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/> -->
@@ -100,7 +100,8 @@
 
 				<h:column>
 					<f:facet name="header">Data Checagem</f:facet>
-					<h:outputText value="#{varItemEstoque.dataChecagem}" converter="com.douglasproglima.sistemafinanceiro.conversores.conversordatapersonalizado">
+					<h:outputText value="#{varItemEstoque.dataChecagem}" 
+								  converter="com.douglasproglima.ConversorDataPersonalizado">
 						<!-- <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>  -->
 					</h:outputText>
 				</h:column>

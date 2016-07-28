@@ -61,3 +61,15 @@ h1 {
 .form-grid .campo {
 	padding-right: 5px;
 }
+
+ul.form-mensagens{
+	padding-left: 20px;	
+}
+
+.frm-mensagens .erros{
+	color: #e81f1f;	
+}
+
+.frm-mensagens .info{
+	color: #156b2a;	
+}
