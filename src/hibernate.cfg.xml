@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Configurações da conexão com o banco de dados -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/sistemaFinanceiroJSF</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+
+		<!-- Configura quantas sessões hibernate irá abrir ao mesmo tempo - pool de conexão -->
+		<property name="connection.pool_size">1</property>
+
+		<!-- SQL dialect - Qual o idioma do banco de dados -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+
+		<!-- Gerenciamento do contexto das sessões que por padrão será por trades -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- Cash de segundo nível, o hibernate salva os cash mais utilizados -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+		<!-- Mostra os SQL's gerados - Log -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+
+		<!-- Cria as tabelas do banco de dados, esse parâmetro possui até 3 opções:
+			1 - update   -> Tenta manter os dados e atualiza as tabelas;
+			2 - create   -> Apaga todas as tabelas e os dados; 
+			3 - validade -> Valida o que criou no projeto Java está criado no banco;
+		-->
+<!-- 		<property name="hbm2ddl.auto">update</property> -->
+
+		<!-- Mapeamento das entidades do hibernate que estão nas class com anotação @Entidy -->
+<!-- 		<mapping class="br.pro.delfino.drogaria.domain.Cidade"/> -->
+	</session-factory>
+
+</hibernate-configuration>
