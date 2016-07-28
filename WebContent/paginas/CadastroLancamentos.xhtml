@@ -67,7 +67,9 @@
 				<h:outputLabel value="Data Pagamento: " />
 				<h:inputText size="12" label="Data de Pagamento"
 							 value="#{cadastroLancamentosBean.lancamento.dataPagamento}" >
+					
 					<f:convertDateTime for="idDataVenc" pattern="dd/MM/yyyy" />	
+					<f:validator validatorId="com.douglasproglima.DataFutura"/>
 				</h:inputText>
 				
 				<h:outputLabel/>
