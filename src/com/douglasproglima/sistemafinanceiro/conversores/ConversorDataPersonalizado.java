@@ -1,4 +1,4 @@
-package conversores;
+package com.douglasproglima.sistemafinanceiro.conversores;
 
 import java.text.DateFormat;
 import java.text.ParseException;

@@ -1,4 +1,4 @@
-package view;
+package com.douglasproglima.sistemafinanceiro.view;
 
 import java.util.ArrayList;
 import java.util.List;

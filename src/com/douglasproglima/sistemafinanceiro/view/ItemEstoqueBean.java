@@ -1,4 +1,4 @@
-package view;
+package com.douglasproglima.sistemafinanceiro.view;
 
 import java.math.BigDecimal;
 import java.util.Date;

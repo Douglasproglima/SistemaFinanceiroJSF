@@ -1,4 +1,4 @@
-package model;
+package com.douglasproglima.sistemafinanceiro.model;
 
 public enum TipoLancamento {
 	RECEITA("Receita"),	

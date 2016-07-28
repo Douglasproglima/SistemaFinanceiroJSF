@@ -38,9 +38,11 @@
 					<h:outputLabel for="idCheckBoxContaPagar" value="Conta Paga" />
 				</h:panelGroup>	
 				
-				<h:outputLabel for="idPessoa" value="Pessoa: " />
-				<h:selectOneMenu>
-					<f:selectItem id="idPessoa" itemValue="Supermercado Casa Rena"/>
+				<h:outputLabel value="Pessoa: " />
+				<h:selectOneMenu value="#{cadastroLancamentosBean.lancamento.pessoa}" required="true" label="Pessoa">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+					<f:selectItems var="varPessoa" itemValue="#{varPessoa}" itemLabel="#{varPessoa.nome}"
+								   value="#{cadastroLancamentosBean.pessoas}"/>
 				</h:selectOneMenu>
 				
 				<h:outputLabel for="idDescricao" value="Descrição: " />

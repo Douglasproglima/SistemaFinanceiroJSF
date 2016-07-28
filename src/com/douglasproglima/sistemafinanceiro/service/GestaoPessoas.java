@@ -1,11 +1,11 @@
-package service;
+package com.douglasproglima.sistemafinanceiro.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import model.Pessoa;
+import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 
 public class GestaoPessoas {
 	private static Map<Integer, Pessoa> mapPessoas = new HashMap<Integer, Pessoa>();
@@ -18,7 +18,7 @@ public class GestaoPessoas {
 	
 	public List<Pessoa> exibirTodasPessoas(){
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
-		pessoas.addAll(pessoas);
+		pessoas.addAll(GestaoPessoas.mapPessoas.values());
 		
 		return pessoas;
 	}

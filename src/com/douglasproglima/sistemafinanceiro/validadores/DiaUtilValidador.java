@@ -1,4 +1,4 @@
-package validadores;
+package com.douglasproglima.sistemafinanceiro.validadores;
 
 import java.util.Calendar;
 import java.util.Date;
