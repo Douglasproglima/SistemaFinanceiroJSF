@@ -55,7 +55,10 @@
 				<h:outputLabel for="idDataChecagem" value="Data Checagem: " />
 				<h:panelGroup>
 					<h:inputText id="idDataChecagem" size="12" value="#{estoqueBean.itemEstoqueBean.dataChecagem}"
-								 label="Data da Checagem" converter="com.douglasproglima.sistemafinanceiro.conversores.conversordatapersonalizado">
+								 label="Data da Checagem" 
+								 converter="com.douglasproglima.sistemafinanceiro.conversores.conversordatapersonalizado"
+								 >
+						<f:validator validatorId="com.douglasproglima.DiaUtil"/>
 						<!-- <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/> -->
 					</h:inputText>
 					<h:message for="idDataChecagem" showSummary="true" showDetail="false"/>
