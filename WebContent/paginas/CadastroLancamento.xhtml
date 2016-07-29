@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>3.14 - Cadastro de Lançamentos</title>
+		
+		<h:outputStylesheet library="css" name="sistema.css" />
+		<h:outputStylesheet library="css" name="consultaLancamentos.css" />
+		<h:outputStylesheet library="css" name="sistemaConsultaLanc.css" />
+	</h:head>
+	<h:body>
+		<h1>Novo Lançamento</h1>
+		
+		<h:form id="FrmCadastroLancamento">
+		
+			<h:button value="Novo" outcome="CadastroLancamento" />
+			<h:button value="Consulta" outcome="ConsultaLancamento" />
+
+			<h:message showSummary="true" showDetail="false" styleClass="form-mensagens" 
+					   errorClass="erros" infoClass="info"/>
+
+			<h:panelGrid columns="2" styleClass="form-grid" columnClasses="label, campo">
+			
+				<h:outputLabel value="Tipo: "/>
+				<h:selectOneRadio value="#{cadastroLancamentosBean.lancamento.tipo}"
+								  required="true" label="Tipo do lançamento">
+					
+					<f:selectItems var="varTipoLancamento"
+								   value="#{cadastroLancamentosBean.tiposLancamentos}"
+								   itemLabel="#{varTipoLancamento.descricao}"
+								   itemValue="#{varTipoLancamento}" />
+				</h:selectOneRadio>
+
+				<h:outputLabel value="Status: "/>
+				<h:panelGroup>
+					<h:selectBooleanCheckbox id="idCheckBoxContaPagar" immediate="true" onchange="submit();"
+											 value="#{cadastroLancamentosBean.lancamento.pago}"
+											 valueChangeListener="#{cadastroLancamentosBean.lancamentoPagoAlterado}" 
+											 />
+					<h:outputLabel for="idCheckBoxContaPagar" value="Conta paga"/>
+				</h:panelGroup>
+				
+				<h:outputLabel value="Pessoa"/>
+				<h:selectOneMenu value="#{cadastroLancamentosBean.lancamento.pessoa}" required="true" label="Pessoa">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItems var="varPessoa" itemValue="#{varPessoa}" itemLabel="#{varPessoa.nome}"
+								   value="#{cadastroLancamentosBean.pessoas}"/>
+				</h:selectOneMenu>
+				
+				<h:outputLabel value="Descrição"/>
+				<h:inputText size="60" value="#{cadastroLancamentosBean.lancamento.descricao}" 
+							 required="true" label="Descrição" />
+				
+				<h:outputLabel value="Valor"/>
+				<h:inputText size="12" value="#{cadastroLancamentosBean.lancamento.valor}" required="true" label="Valor">
+					
+					<f:convertNumber locale="pt_BR" maxFractionDigits="2" minFractionDigits="2" />
+					<f:validateDoubleRange minimum="0" />
+				</h:inputText>
+				
+				<h:outputLabel value="Data de vencimento" />
+				<h:inputText size="12" required="true" label="Data de vencimento"
+							 value="#{cadastroLancamentosBean.lancamento.dataVencimento}">
+							 
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				
+				<h:outputLabel value="Data de pagamento" rendered="#{cadastroLancamentosBean.lancamento.pago}"/>
+				<h:inputText size="12" label="Data de pagamento" 
+							 value="#{cadastroLancamentosBean.lancamento.dataPagamento}"
+							 rendered="#{cadastroLancamentosBean.lancamento.pago}">
+							 
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+					<f:validator validatorId="com.douglasproglima.RequirimentoCondicional"/>
+					<f:validator validatorId="com.douglasproglima.DataFutura"/>
+					<f:attribute name="atributoPersonalizadoChecado" value="#{cadastroLancamentosBean.lancamento.pago}"/>
+				</h:inputText>
+				
+				<h:outputLabel/>
+				<h:commandButton value="Cadastrar" action="#{cadastroLancamentosBean.cadastrar}" />
+			</h:panelGrid>
+			
+			<br/>
+			
+			<h:dataTable var="varLancamentos" value="#{consultaLancamentosBean.lancamentos}" 
+						 width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
+						 columnClasses="tipo, pessoa, descricao, valor, vencimento, pagamento, status, opcoes">
+				<h:column>
+					<h:graphicImage library="imagens" name="despesa.png" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Pessoa</f:facet>
+					<h:outputText value="Supermercado Casa Rena" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Descrição</f:facet>
+					<h:outputText value="Insumos do Supermercado" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Valor</f:facet>
+					<h:outputText value="R$ 320,00" styleClass="despesa"/>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Data Vencimento</f:facet>
+					<h:outputText value="25/07/2016" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Data Pagamento</f:facet>
+					<h:outputText value="21/07/2016" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Status</f:facet>
+					<h:outputText value="Pago" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Opções</f:facet>
+					<h:graphicImage library="imagens" name="editar.png" />
+					<h:graphicImage library="imagens" name="excluir.png" />
+				</h:column>	
+			</h:dataTable>			
+		</h:form>
+	</h:body>
+</html>
