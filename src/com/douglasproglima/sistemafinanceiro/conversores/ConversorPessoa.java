@@ -5,8 +5,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import org.hibernate.Session;
+
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
-import com.douglasproglima.sistemafinanceiro.service.GestaoPessoas;
+//import com.douglasproglima.sistemafinanceiro.service.GestaoPessoas;
+import com.douglasproglima.sistemafinanceiro.util.HibernateUtil;
 
 //Este conversor não precisa espeficicar na página, porque estamos falando que ele irá sempre ser utilizado pela class pessoa
 @FacesConverter(forClass=Pessoa.class)
@@ -17,8 +20,22 @@ public class ConversorPessoa implements Converter{
 		Pessoa retornoPessoa = null;
 		
 		if(valor != null){
-			GestaoPessoas gestaoPessoas = new GestaoPessoas();
-			retornoPessoa = gestaoPessoas.filtrarPorCodigo(new Integer(valor));
+//			GestaoPessoas gestaoPessoas = new GestaoPessoas();
+//			retornoPessoa = gestaoPessoas.filtrarPorCodigo(new Integer(valor));
+			
+			Session sessao = HibernateUtil.getSessao();
+			
+			/*A diferença entre o session.load() e session.get():
+			 * session.load(): O load não busca a informação diretamente no banco, ele retorna um proxy 
+			 * 				   (especie de um objeto que vai encapsular a class X, vc terá os dados apenas na primeiro vez que utilizar)
+			 * session.get().: Retorna na hora o objeto caso o mesmo tenha no banco de dados, no caso seria a o 
+			 * 				   parâmetro nome que representa o nome da class pessoa.
+			*/
+			
+//			retornoPessoa = (Pessoa) sessao.load(Pessoa.class, new Integer(valor));
+			retornoPessoa = (Pessoa) sessao.get(Pessoa.class, new Integer(valor));
+			
+			sessao.close();
 		}
 		
 		return retornoPessoa;

@@ -11,11 +11,16 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 import com.douglasproglima.sistemafinanceiro.model.TipoLancamento;
-import com.douglasproglima.sistemafinanceiro.service.GestaoPessoas;
+//import com.douglasproglima.sistemafinanceiro.service.GestaoPessoas;
+import com.douglasproglima.sistemafinanceiro.util.HibernateUtil;
 
+@SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
 public class CadastroLancamentosBean implements Serializable{
@@ -24,10 +29,17 @@ public class CadastroLancamentosBean implements Serializable{
 	public List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
 	//Este será chamado sempre que o managedBean for criado, por isso estou usando a anotação @PostConstruct
+	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void iniciar(){
-		GestaoPessoas gestaoPessoas = new GestaoPessoas();
-		this.pessoas = gestaoPessoas.exibirTodasPessoas();
+//		GestaoPessoas gestaoPessoas = new GestaoPessoas();
+//		this.pessoas = gestaoPessoas.exibirTodasPessoas();
+		
+		Session sessao = HibernateUtil.getSessao();
+		
+		this.pessoas = sessao.createCriteria(Pessoa.class).addOrder(Order.asc("nome")).list();
+		
+		sessao.close();		
 	}	
 	
 	public void cadastrar() {
