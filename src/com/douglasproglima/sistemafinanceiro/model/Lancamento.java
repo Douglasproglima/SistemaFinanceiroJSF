@@ -18,8 +18,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="lancamento")
 public class Lancamento implements Serializable{
-	//Atributos
 	
+	//Atributos
 	@Column(name="codigo", nullable=false)
 	@Id
 	@GeneratedValue

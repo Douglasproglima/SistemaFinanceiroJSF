@@ -12,7 +12,7 @@ public class TesteHibernate {
 	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args){
-		Session sessao = HibernateUtil.getSesao();
+		Session sessao = HibernateUtil.getSessao();
 		
 		List<Pessoa> pessoas = sessao.createCriteria(Pessoa.class).add(Restrictions.gt("codigo", 2)).list();
 		

@@ -30,7 +30,7 @@ public class HibernateUtil {
 	}
 	
 	//Abre uma conexão com o banco em formato de sessão
-	public static Session getSesao(){
+	public static Session getSessao(){
 		
 		return fabricaSessao.openSession();
 	}
