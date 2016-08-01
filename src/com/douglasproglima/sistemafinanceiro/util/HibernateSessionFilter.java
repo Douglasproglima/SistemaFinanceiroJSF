@@ -28,7 +28,7 @@ public class HibernateSessionFilter implements Filter{
 			transacao = sessao.beginTransaction();
 			
 			//Atribui a requisiçao a sessão do hibernate, será utilizado nos managesBean nas anotações de escopos.
-			requisicao.setAttribute("sessao", sessao);
+			requisicao.setAttribute("atributoSessaoDoFilter", sessao);
 			
 			//Continua o processo depois da requisição
 			chain.doFilter(requisicao, resposta);
