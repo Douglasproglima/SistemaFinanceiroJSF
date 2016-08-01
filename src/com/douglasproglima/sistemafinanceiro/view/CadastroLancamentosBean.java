@@ -18,7 +18,6 @@ import org.hibernate.criterion.Order;
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 import com.douglasproglima.sistemafinanceiro.model.TipoLancamento;
-//import com.douglasproglima.sistemafinanceiro.service.GestaoPessoas;
 import com.douglasproglima.sistemafinanceiro.util.HibernateUtil;
 
 @SuppressWarnings("serial")
@@ -33,9 +32,6 @@ public class CadastroLancamentosBean implements Serializable{
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void iniciar(){
-//		GestaoPessoas gestaoPessoas = new GestaoPessoas();
-//		this.pessoas = gestaoPessoas.exibirTodasPessoas();
-		
 		Session sessao = HibernateUtil.getSessao();
 		
 		this.pessoas = sessao.createCriteria(Pessoa.class).addOrder(Order.asc("nome")).list();

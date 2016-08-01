@@ -6,18 +6,27 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+
+import com.douglasproglima.sistemafinanceiro.model.Lancamento;
+import com.douglasproglima.sistemafinanceiro.util.HibernateUtil;
+
 @ManagedBean
 public class ConsultaLancamentosBean {
-	private List<String> lancamentos = new ArrayList<String>();
+	private List<Lancamento> lancamentos = new ArrayList<Lancamento>();
 	
+	@SuppressWarnings({ "unchecked", "static-access" })
 	@PostConstruct
 	public void inicializar(){
-		for(int i = 0; i < 10; i++){
-			lancamentos.add("");
-		}
+		Session sessao = new HibernateUtil().getSessao();
+		
+		this.lancamentos = sessao.createCriteria(Lancamento.class).addOrder(Order.desc("dataVencimento")).list();
+		
+		sessao.close();
 	}
 	
-	public List<String> getLancamentos() {
+	public List<Lancamento> getLancamentos() {
 		return lancamentos;
 	}
 }
