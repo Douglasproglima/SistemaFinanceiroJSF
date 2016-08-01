@@ -13,8 +13,11 @@
 	</h:head>
 	<h:body>
 		<h1>Consulta Lançamentos</h1>
+		
 		<h:form id="FrmConsultaLancamento">
-			<h:button value="Novo Lançamento" outcome="CadastroLancamento"/>
+
+			<h:messages showSummary="true" showDetail="false" styleClass="form-mensagens" 
+					   errorClass="erros" infoClass="info"/>
 			
 			<h:dataTable var="varLancamentos" value="#{consultaLancamentosBean.lancamentos}" 
 						 width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
@@ -63,9 +66,14 @@
 				<h:column>
 					<f:facet name="header">Opções</f:facet>
 					<h:graphicImage library="imagens" name="editar.png" />
-					<h:graphicImage library="imagens" name="excluir.png" />
+					
+					<h:commandLink action="#{consultaLancamentosBean.excluir}">
+						<h:graphicImage library="imagens" name="excluir.png" />
+						<f:setPropertyActionListener value="#{varLancamentos}" 
+													 target="#{consultaLancamentosBean.lancamentoSelecionado}" />
+					</h:commandLink>
 				</h:column>
-			</h:dataTable>
+			</h:dataTable>		
 		</h:form>
 
 	</h:body>

@@ -21,7 +21,7 @@
 			<h:button value="Novo" outcome="CadastroLancamento" />
 			<h:button value="Consulta" outcome="ConsultaLancamento" />
 
-			<h:message showSummary="true" showDetail="false" styleClass="form-mensagens" 
+			<h:messages showSummary="true" showDetail="false" styleClass="form-mensagens" 
 					   errorClass="erros" infoClass="info"/>
 
 			<h:panelGrid columns="2" styleClass="form-grid" columnClasses="label, campo">
@@ -84,8 +84,11 @@
 				<h:outputLabel/>
 				<h:commandButton value="Cadastrar" action="#{cadastroLancamentosBean.cadastrar}" />
 			</h:panelGrid>
+		</h:form>			
 			
 			<br/>
+			
+		<h:form id="FrmConsultaLancamento">
 			
 			<h:dataTable var="varLancamentos" value="#{consultaLancamentosBean.lancamentos}" 
 						 width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
@@ -134,7 +137,12 @@
 				<h:column>
 					<f:facet name="header">Opções</f:facet>
 					<h:graphicImage library="imagens" name="editar.png" />
-					<h:graphicImage library="imagens" name="excluir.png" />
+					
+					<h:commandLink action="#{consultaLancamentosBean.excluir}">
+						<h:graphicImage library="imagens" name="excluir.png" />
+						<f:setPropertyActionListener value="#{varLancamentos}" 
+													 target="#{consultaLancamentosBean.lancamentoSelecionado}" />
+					</h:commandLink>
 				</h:column>
 			</h:dataTable>		
 		</h:form>
