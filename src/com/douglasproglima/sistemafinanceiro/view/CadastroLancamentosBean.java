@@ -18,6 +18,7 @@ import org.hibernate.criterion.Order;
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 import com.douglasproglima.sistemafinanceiro.model.TipoLancamento;
+import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
 import com.douglasproglima.sistemafinanceiro.util.HibernateUtil;
 
 @SuppressWarnings("serial")
@@ -39,6 +40,7 @@ public class CadastroLancamentosBean implements Serializable{
 		sessao.close();		
 	}	
 	
+	@SuppressWarnings("static-access")
 	public void cadastrar() {
 		Session sessao = new HibernateUtil().getSessao();
 		
@@ -52,7 +54,7 @@ public class CadastroLancamentosBean implements Serializable{
 		this.lancamento = new Lancamento(); //Limpa a tela
 		
 		String msg = "Cadastro efetuado com sucesso!";
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+		FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, msg, msg);
 	}
 	
 	//Este método será executado antes da validação referente ao ciclo de vida da requisição.
