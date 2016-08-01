@@ -8,26 +8,22 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
-import com.douglasproglima.sistemafinanceiro.util.HibernateUtil;
 
 @ManagedBean
 public class ConsultaLancamentosBean {
 	private List<Lancamento> lancamentos = new ArrayList<Lancamento>();
 	private Lancamento lancamentoSelecionado;
 	
-	@SuppressWarnings({ "unchecked", "static-access" })
+	@SuppressWarnings({ "unchecked"})
 	@PostConstruct
 	public void inicializar(){
-		Session sessao = new HibernateUtil().getSessao();
+		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
 		
 		this.lancamentos = sessao.createCriteria(Lancamento.class).addOrder(Order.desc("dataVencimento")).list();
-		
-		sessao.close();
 	}
 	
 	public void excluir(){
@@ -36,13 +32,9 @@ public class ConsultaLancamentosBean {
 										"O lançamento já foi pago. \nRegistro não pode ser excluído!", 
 										"O lançamento já foi pago. \nRegistro não pode ser excluído!");
 		}else{
-			Session sessao = HibernateUtil.getSessao();
-			Transaction transacao = sessao.beginTransaction();
+			Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
 			
 			sessao.delete(this.lancamentoSelecionado);
-			
-			transacao.commit();
-			sessao.close();
 			
 			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, 
 										"Lançamento Excluído com sucesso!", 

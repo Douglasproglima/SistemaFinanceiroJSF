@@ -8,6 +8,7 @@ import javax.faces.convert.FacesConverter;
 import org.hibernate.Session;
 
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
+import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
 //import com.douglasproglima.sistemafinanceiro.service.GestaoPessoas;
 import com.douglasproglima.sistemafinanceiro.util.HibernateUtil;
 
@@ -23,7 +24,7 @@ public class ConversorPessoa implements Converter{
 //			GestaoPessoas gestaoPessoas = new GestaoPessoas();
 //			retornoPessoa = gestaoPessoas.filtrarPorCodigo(new Integer(valor));
 			
-			Session sessao = HibernateUtil.getSessao();
+			Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
 			
 			/*A diferença entre o session.load() e session.get():
 			 * session.load(): O load não busca a informação diretamente no banco, ele retorna um proxy 
@@ -34,8 +35,6 @@ public class ConversorPessoa implements Converter{
 			
 //			retornoPessoa = (Pessoa) sessao.load(Pessoa.class, new Integer(valor));
 			retornoPessoa = (Pessoa) sessao.get(Pessoa.class, new Integer(valor));
-			
-			sessao.close();
 		}
 		
 		return retornoPessoa;
