@@ -5,15 +5,19 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import org.hibernate.Session;
+//import org.hibernate.Session;
 
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
-import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
+import com.douglasproglima.sistemafinanceiro.repositorio.RepositorioPessoas;
+//import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
+import com.douglasproglima.sistemafinanceiro.util.Repositorios;
 
 //Este conversor não precisa espeficicar na página, porque estamos falando que ele irá sempre ser utilizado pela class pessoa
 @FacesConverter(forClass=Pessoa.class)
 public class ConversorPessoa implements Converter{
 
+	private Repositorios repositorios = new Repositorios();
+	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent componente, String valor) {
 		Pessoa retornoPessoa = null;
@@ -22,7 +26,8 @@ public class ConversorPessoa implements Converter{
 //			GestaoPessoas gestaoPessoas = new GestaoPessoas();
 //			retornoPessoa = gestaoPessoas.filtrarPorCodigo(new Integer(valor));
 			
-			Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
+			//Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
+			RepositorioPessoas repositorioPessoas = this.repositorios.getPessoas();
 			
 			/*A diferença entre o session.load() e session.get():
 			 * session.load(): O load não busca a informação diretamente no banco, ele retorna um proxy 
@@ -32,7 +37,8 @@ public class ConversorPessoa implements Converter{
 			*/
 			
 //			retornoPessoa = (Pessoa) sessao.load(Pessoa.class, new Integer(valor));
-			retornoPessoa = (Pessoa) sessao.get(Pessoa.class, new Integer(valor));
+//			retornoPessoa = (Pessoa) sessao.get(Pessoa.class, new Integer(valor));
+			retornoPessoa = repositorioPessoas.consultaPorCodigo(new Integer(valor));
 		}
 		
 		return retornoPessoa;
