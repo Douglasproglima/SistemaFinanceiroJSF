@@ -9,8 +9,6 @@ import org.hibernate.Session;
 
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
-//import com.douglasproglima.sistemafinanceiro.service.GestaoPessoas;
-import com.douglasproglima.sistemafinanceiro.util.HibernateUtil;
 
 //Este conversor não precisa espeficicar na página, porque estamos falando que ele irá sempre ser utilizado pela class pessoa
 @FacesConverter(forClass=Pessoa.class)
