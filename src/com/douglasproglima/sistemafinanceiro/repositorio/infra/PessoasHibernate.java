@@ -1,4 +1,4 @@
-package com.douglasproglima.sistemafinanceiro.infra;
+package com.douglasproglima.sistemafinanceiro.repositorio.infra;
 
 import java.util.List;
 
@@ -9,8 +9,6 @@ import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 import com.douglasproglima.sistemafinanceiro.repositorio.RepositorioPessoas;
 
 public class PessoasHibernate implements RepositorioPessoas{
-
-
 	private Session sessao;
 	
 	//Recebe a sessão pelo construtor (Poderia fazer pelo setSessao()), em resumo por injeção de dependência
