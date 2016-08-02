@@ -26,4 +26,9 @@ public class LancamentosHibernate implements RepositorioLancamentos{
 	public Lancamento salvar(Lancamento lancamento) {
 		return (Lancamento) sessao.merge(lancamento);
 	}
+
+	@Override
+	public void remover(Lancamento lancamento) {
+		this.sessao.delete(lancamento);
+	}
 }
