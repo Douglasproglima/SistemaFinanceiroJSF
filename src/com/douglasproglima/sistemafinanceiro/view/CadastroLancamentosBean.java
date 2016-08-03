@@ -12,29 +12,28 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 import com.douglasproglima.sistemafinanceiro.model.TipoLancamento;
+import com.douglasproglima.sistemafinanceiro.repositorio.FichaDePessoas;
 import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
+import com.douglasproglima.sistemafinanceiro.util.Repositorios;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
 public class CadastroLancamentosBean implements Serializable{
 	
-	public Lancamento lancamento = new Lancamento();
-	public List<Pessoa> pessoas = new ArrayList<Pessoa>();
-
-	//Este será chamado sempre que o managedBean for criado, por isso estou usando a anotação @PostConstruct
-	@SuppressWarnings("unchecked")
+	private Repositorios repositorios = new Repositorios();
+	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
+	private Lancamento lancamento = new Lancamento();
+	
+	//Este método será chamado sempre que o managedBean for criado, por isso estou usando a anotação @PostConstruct
 	@PostConstruct
 	public void iniciar(){
-		//Atributo 'sessao' da class HibernateSessionFilter método doFilter()		
-		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("sessaoMetodoDoFilter");
-		
-		this.pessoas = sessao.createCriteria(Pessoa.class).addOrder(Order.asc("nome")).list();	
+		FichaDePessoas fichaDePessoas = this.repositorios.getPessoas();
+		this.pessoas = fichaDePessoas.consultaTodas();	
 	}	
 	
 	public void cadastrar() {
