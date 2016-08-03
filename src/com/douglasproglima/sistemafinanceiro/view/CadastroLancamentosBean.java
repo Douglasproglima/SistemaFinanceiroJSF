@@ -11,11 +11,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
-import org.hibernate.Session;
-
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 import com.douglasproglima.sistemafinanceiro.model.TipoLancamento;
+import com.douglasproglima.sistemafinanceiro.repositorio.FichaDeLancamentos;
 import com.douglasproglima.sistemafinanceiro.repositorio.FichaDePessoas;
 import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
 import com.douglasproglima.sistemafinanceiro.util.Repositorios;
@@ -37,8 +36,8 @@ public class CadastroLancamentosBean implements Serializable{
 	}	
 	
 	public void cadastrar() {
-		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("sessaoMetodoDoFilter");
-		sessao.merge(this.lancamento);
+		FichaDeLancamentos fichaDeLancamentos = this.repositorios.getLancamentos();
+		fichaDeLancamentos.guardar(this.lancamento);
 
 		this.lancamento = new Lancamento(); //Limpa a tela
 		
