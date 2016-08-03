@@ -7,23 +7,22 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
-
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
+import com.douglasproglima.sistemafinanceiro.repositorio.FichaDeLancamentos;
 import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
+import com.douglasproglima.sistemafinanceiro.util.Repositorios;
 
 @ManagedBean
 public class ConsultaLancamentosBean {
+	
+	private Repositorios repositorios = new Repositorios();
 	private List<Lancamento> lancamentos = new ArrayList<Lancamento>();
 	private Lancamento lancamentoSelecionado;
 	
-	@SuppressWarnings("unchecked")
 	@PostConstruct
-	public void inicializar(){
-		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("sessaoMetodoDoFilter");
-		
-		this.lancamentos = sessao.createCriteria(Lancamento.class).addOrder(Order.desc("dataVencimento")).list();
+	public void iniciar(){
+		FichaDeLancamentos fichaDeLancamentos = repositorios.getLancamentos();
+		this.lancamentos = fichaDeLancamentos.consultaTodos();
 	}
 	
 	public void excluir(){
@@ -32,10 +31,10 @@ public class ConsultaLancamentosBean {
 										"O lançamento já foi pago. \nRegistro não pode ser excluído!", 
 										"O lançamento já foi pago. \nRegistro não pode ser excluído!");
 		}else{
-			Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("sessaoMetodoDoFilter");
-			sessao.delete(this.lancamentoSelecionado);
-
-			inicializar();
+			FichaDeLancamentos fichaDeLancamentos = repositorios.getLancamentos();
+			fichaDeLancamentos.remover(this.lancamentoSelecionado);
+			
+			iniciar();
 			
 			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, 
 										"Lançamento Excluído com sucesso!", 
