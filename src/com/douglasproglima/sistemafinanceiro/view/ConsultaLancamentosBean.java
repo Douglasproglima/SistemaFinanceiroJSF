@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.repositorio.FichaDeLancamentos;
+import com.douglasproglima.sistemafinanceiro.servico.GestaoLancamentos;
+import com.douglasproglima.sistemafinanceiro.servico.RegraNegocioException;
 import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
 import com.douglasproglima.sistemafinanceiro.util.Repositorios;
 
@@ -26,20 +28,33 @@ public class ConsultaLancamentosBean {
 	}
 	
 	public void excluir(){
-		if (this.lancamentoSelecionado.isPago()) {
-			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, 
-										"O lançamento já foi pago. \nRegistro não pode ser excluído!", 
-										"O lançamento já foi pago. \nRegistro não pode ser excluído!");
-		}else{
-			FichaDeLancamentos fichaDeLancamentos = repositorios.getLancamentos();
-			fichaDeLancamentos.remover(this.lancamentoSelecionado);
+		GestaoLancamentos gestaoLancamentos = new GestaoLancamentos(this.repositorios.getLancamentos());
+		try {
+			gestaoLancamentos.excluir( this.lancamentoSelecionado);
 			
-			iniciar();
+			this.iniciar();
 			
 			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, 
 										"Lançamento Excluído com sucesso!", 
 										"Lançamento Excluído com sucesso!");
+		} catch (RegraNegocioException erro) {
+			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, erro.getMessage(), erro.getMessage());
 		}
+		
+//		if (this.lancamentoSelecionado.isPago()) {
+//			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, 
+//										"O lançamento já foi pago. \nRegistro não pode ser excluído!", 
+//										"O lançamento já foi pago. \nRegistro não pode ser excluído!");
+//		}else{
+//			FichaDeLancamentos fichaDeLancamentos = repositorios.getLancamentos();
+//			fichaDeLancamentos.remover(this.lancamentoSelecionado);
+//			
+//			iniciar();
+//			
+//			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, 
+//										"Lançamento Excluído com sucesso!", 
+//										"Lançamento Excluído com sucesso!");
+//		}
 	}
 	
 	//Métodos Bean Getters e Setters
