@@ -10,5 +10,4 @@ public interface RepositorioLancamentos {
 	
 	//Salva o lancamento no repositório
 	public Lancamento salvar(Lancamento lancamento);
-	public void remover(Lancamento lancamento); 
 }
