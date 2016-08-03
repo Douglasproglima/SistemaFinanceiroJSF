@@ -27,20 +27,20 @@ public class CadastroLancamentosBean implements Serializable{
 	public Lancamento lancamento = new Lancamento();
 	public List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
-	//Este método será chamado sempre que o managedBean for criado, por isso estou usando a anotação @PostConstruct
+	//Este será chamado sempre que o managedBean for criado, por isso estou usando a anotação @PostConstruct
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void iniciar(){
-		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
-
-		this.pessoas = sessao.createCriteria(Pessoa.class).addOrder(Order.asc("nome")).list();		
+		//Atributo 'sessao' da class HibernateSessionFilter método doFilter()		
+		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("sessaoMetodoDoFilter");
+		
+		this.pessoas = sessao.createCriteria(Pessoa.class).addOrder(Order.asc("nome")).list();	
 	}	
-
+	
 	public void cadastrar() {
-		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
-		
+		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("sessaoMetodoDoFilter");
 		sessao.merge(this.lancamento);
-		
+
 		this.lancamento = new Lancamento(); //Limpa a tela
 		
 		String msg = "Cadastro efetuado com sucesso!";

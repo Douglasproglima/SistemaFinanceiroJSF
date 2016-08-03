@@ -16,7 +16,7 @@ public class Repositorios implements Serializable{
 	//interface (repositório) que será utilizado no managedBean
 	
 	private Session getSessao(){
-		return (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
+		return null; //(Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
 	}
 	
 	public RepositorioPessoas getPessoas(){

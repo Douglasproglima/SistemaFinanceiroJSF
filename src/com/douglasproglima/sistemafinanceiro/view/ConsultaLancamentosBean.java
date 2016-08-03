@@ -18,10 +18,10 @@ public class ConsultaLancamentosBean {
 	private List<Lancamento> lancamentos = new ArrayList<Lancamento>();
 	private Lancamento lancamentoSelecionado;
 	
-	@SuppressWarnings({ "unchecked"})
+	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void inicializar(){
-		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
+		Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("sessaoMetodoDoFilter");
 		
 		this.lancamentos = sessao.createCriteria(Lancamento.class).addOrder(Order.desc("dataVencimento")).list();
 	}
@@ -32,15 +32,14 @@ public class ConsultaLancamentosBean {
 										"O lançamento já foi pago. \nRegistro não pode ser excluído!", 
 										"O lançamento já foi pago. \nRegistro não pode ser excluído!");
 		}else{
-			Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("atributoSessaoDoFilter");
-			
+			Session sessao = (Session) FacesUtil.getAtributosDaRequisicao("sessaoMetodoDoFilter");
 			sessao.delete(this.lancamentoSelecionado);
+
+			inicializar();
 			
 			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, 
 										"Lançamento Excluído com sucesso!", 
 										"Lançamento Excluído com sucesso!");
-			
-			inicializar();
 		}
 	}
 	
