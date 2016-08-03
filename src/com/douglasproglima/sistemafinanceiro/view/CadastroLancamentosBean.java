@@ -14,8 +14,9 @@ import javax.faces.event.ValueChangeEvent;
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 import com.douglasproglima.sistemafinanceiro.model.TipoLancamento;
-import com.douglasproglima.sistemafinanceiro.repositorio.FichaDeLancamentos;
 import com.douglasproglima.sistemafinanceiro.repositorio.FichaDePessoas;
+import com.douglasproglima.sistemafinanceiro.servico.GestaoLancamentos;
+import com.douglasproglima.sistemafinanceiro.servico.RegraNegocioException;
 import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
 import com.douglasproglima.sistemafinanceiro.util.Repositorios;
 
@@ -36,13 +37,17 @@ public class CadastroLancamentosBean implements Serializable{
 	}	
 	
 	public void cadastrar() {
-		FichaDeLancamentos fichaDeLancamentos = this.repositorios.getLancamentos();
-		fichaDeLancamentos.guardar(this.lancamento);
-
-		this.lancamento = new Lancamento(); //Limpa a tela
-		
-		String msg = "Cadastro efetuado com sucesso!";
-		FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, msg, msg);
+		GestaoLancamentos gestaoLancamentos = new GestaoLancamentos(this.repositorios.getLancamentos());
+		try {
+			gestaoLancamentos.salvar(lancamento);
+			
+			this.lancamento = new Lancamento(); //Limpa a tela
+			
+			String msg = "Cadastro efetuado com sucesso!";
+			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, msg, msg);
+		} catch (RegraNegocioException erro) {
+			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, erro.getMessage(), erro.getMessage());
+		}
 	}
 	
 	//Este método será executado antes da validação referente ao ciclo de vida da requisição.
