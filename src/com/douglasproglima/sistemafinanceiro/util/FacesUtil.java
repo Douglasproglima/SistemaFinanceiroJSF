@@ -17,7 +17,7 @@ public class FacesUtil {
 	public static Object getAtributosDaRequisicao(String nomeAtributoSessaoDoFilter){
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		
-		//A partir do contexto externo, consegue pegar o escopo de requisição
+		//A partir do contexto externo,  consegue pegar o escopo de requisição
 		ExternalContext externalContext = facesContext.getExternalContext();  
 		
 		//Criando um objeto da API do Servlet
