@@ -8,7 +8,7 @@ public interface FichaDeLancamentos {
 	
 	public List<Lancamento> consultaTodos();
 	public Lancamento comDadosIguais(Lancamento lancamento);
-	public Lancamento porCodigo(Integer codigo);
+	public Lancamento consultarPorCodigo(Integer codigo);
 	public Lancamento guardar(Lancamento lancamento);
 	public void remover(Lancamento lancamento);
 }

@@ -24,7 +24,7 @@ public class LancamentosDAO implements FichaDeLancamentos{
 	}
 
 	@Override
-	public Lancamento porCodigo(Integer codigo) {
+	public Lancamento consultarPorCodigo(Integer codigo) {
 		return (Lancamento) sessao.get(Lancamento.class, new Integer(codigo));
 	}
 	
