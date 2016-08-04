@@ -24,6 +24,11 @@ public class LancamentosDAO implements FichaDeLancamentos{
 	}
 
 	@Override
+	public Lancamento porCodigo(Integer codigo) {
+		return (Lancamento) sessao.get(Lancamento.class, new Integer(codigo));
+	}
+	
+	@Override
 	public Lancamento guardar(Lancamento lancamento) {
 		return (Lancamento) sessao.merge(lancamento);
 	}
