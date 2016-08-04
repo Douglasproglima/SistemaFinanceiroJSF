@@ -18,7 +18,7 @@
 		<h:outputStylesheet library="css" name="sistemaConsultaLanc.css" />
 	</h:head>
 	<h:body>
-		<h1>Novo Lançamento</h1>
+		<h1>#{cadastroLancamentosBean.editar ? 'Alterando Lançamento' : 'Novo Lançamento'}</h1>
 		
 		<h:form id="FrmCadastroLancamento">
 		
@@ -86,7 +86,7 @@
 				</h:inputText>
 				
 				<h:outputLabel/>
-				<h:commandButton value="Cadastrar" action="#{cadastroLancamentosBean.cadastrar}" />
+				<h:commandButton value="Salvar" action="#{cadastroLancamentosBean.salvar}" />
 			</h:panelGrid>
 		</h:form>			
 			
@@ -135,7 +135,8 @@
 
 				<h:column>
 					<f:facet name="header">Status</f:facet>
-					<h:outputText value="#{varLancamentos.pago}" />
+					<h:outputText value="Pago" rendered="#{varLancamentos.pago}"/>
+					<h:outputText value="Pendente" rendered="#{not varLancamentos.pago}"/>
 				</h:column>
 				
 				<h:column>
