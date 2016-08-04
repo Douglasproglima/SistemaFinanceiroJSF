@@ -70,6 +70,10 @@ public class CadastroLancamentosBean implements Serializable{
 		return lancamento;
 	}
 	
+	public void setLancamento(Lancamento lancamento) {
+		this.lancamento = lancamento;
+	}
+	
 	public List<Pessoa> getPessoas() {
 		return pessoas;
 	}
