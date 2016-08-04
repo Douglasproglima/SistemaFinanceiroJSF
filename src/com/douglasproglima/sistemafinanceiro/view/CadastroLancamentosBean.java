@@ -61,6 +61,12 @@ public class CadastroLancamentosBean implements Serializable{
 		//Força o JSF a pular para última fase do ciclo de vida da requisição que reinderizar
 		FacesContext.getCurrentInstance().renderResponse();
 	}
+	
+	//Método utilizar para alterar o nome da página de forma dinâmica
+	public boolean isEditar(){
+		//Se o código não for null o usuário está editando o registro
+		return this.lancamento.getClass() != null;
+	}
 
 	public TipoLancamento[] getTiposLancamentos(){
 		return TipoLancamento.values();
