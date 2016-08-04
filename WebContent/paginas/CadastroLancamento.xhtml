@@ -5,6 +5,10 @@
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:f="http://java.sun.com/jsf/core">
 	
+	<f:metadata>
+		<f:viewParam name="varCodigo" value="#{cadastroLancamentosBean.lancamento}"/>	
+	</f:metadata>
+	
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Sistema Financeiro - Lançamentos</title>
@@ -136,7 +140,10 @@
 				
 				<h:column>
 					<f:facet name="header">Opções</f:facet>
-					<h:graphicImage library="imagens" name="editar.png" />
+					<h:link outcome="CadastroLancamento" >
+						<h:graphicImage library="imagens" name="editar.png" />					
+						<f:param name="varCodigo" value="#{varLancamentos.codigo}"/>
+					</h:link>
 					
 					<h:commandLink action="#{consultaLancamentosBean.excluir}">
 						<h:graphicImage library="imagens" name="excluir.png" />
