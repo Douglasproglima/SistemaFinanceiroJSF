@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="lancamento")
-public class Lancamento implements Serializable{
+public class Lancamento implements Serializable, Cloneable{
 	
 	//Atributos
 	@Column(name="codigo", nullable=false)
@@ -123,5 +123,9 @@ public class Lancamento implements Serializable{
 			return false;
 		return true;
 	}	
-	
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

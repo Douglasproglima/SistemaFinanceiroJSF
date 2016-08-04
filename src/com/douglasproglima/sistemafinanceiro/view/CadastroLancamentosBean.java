@@ -36,14 +36,14 @@ public class CadastroLancamentosBean implements Serializable{
 		this.pessoas = fichaDePessoas.consultaTodas();	
 	}	
 	
-	public void cadastrar() {
+	public void salvar() {
 		GestaoLancamentos gestaoLancamentos = new GestaoLancamentos(this.repositorios.getLancamentos());
 		try {
 			gestaoLancamentos.salvar(lancamento);
 			
 			this.lancamento = new Lancamento(); //Limpa a tela
 			
-			String msg = "Cadastro efetuado com sucesso!";
+			String msg = "Lançamento realizado com sucesso!";
 			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, msg, msg);
 		} catch (RegraNegocioException erro) {
 			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, erro.getMessage(), erro.getMessage());
@@ -65,7 +65,7 @@ public class CadastroLancamentosBean implements Serializable{
 	//Método utilizar para alterar o nome da página de forma dinâmica
 	public boolean isEditar(){
 		//Se o código não for null o usuário está editando o registro
-		return this.lancamento.getClass() != null;
+		return this.lancamento.getCodigo() != null;
 	}
 
 	public TipoLancamento[] getTiposLancamentos(){
@@ -76,8 +76,18 @@ public class CadastroLancamentosBean implements Serializable{
 		return lancamento;
 	}
 	
-	public void setLancamento(Lancamento lancamento) {
+	public void setLancamento(Lancamento lancamento) throws CloneNotSupportedException {
 		this.lancamento = lancamento;
+		
+		//No de um novo registro o lançamento será null, para evitar o 
+		//erro de pointExceptio instânciado um novo lançamento
+		if (this.lancamento == null) {
+			this.lancamento = new Lancamento();
+		}else{
+			//Caso o usuário altere o valor de um registro obtendo o mesmo valor de um registro já inserido no banco
+			//ele obtem o mesmo comportamento da regra de negócio que impede o usuário de inserir registros duplicados
+			this.lancamento =  (Lancamento) lancamento.clone();
+		}
 	}
 	
 	public List<Pessoa> getPessoas() {
