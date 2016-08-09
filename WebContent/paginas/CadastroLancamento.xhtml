@@ -1,25 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:f="http://java.sun.com/jsf/core">
-	
-	<f:metadata>
-		<f:viewParam name="varCodigo" value="#{cadastroLancamentosBean.lancamento}"/>	
-	</f:metadata>
-	
-	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Sistema Financeiro - Lançamentos</title>
-		
-		<h:outputStylesheet library="css" name="sistema.css" />
+<ui:composition template="/template/LayoutPadrao.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="titulo">Lançamento</ui:define>
+
+	<ui:define name="conteudo">
+		<f:metadata>
+			<f:viewParam name="varCodigo" value="#{cadastroLancamentosBean.lancamento}"/>	
+		</f:metadata>
+
 		<h:outputStylesheet library="css" name="consultaLancamentos.css" />
 		<h:outputStylesheet library="css" name="sistemaConsultaLanc.css" />
-	</h:head>
-	<h:body>
+
 		<h1>#{cadastroLancamentosBean.editar ? 'Alterando Lançamento' : 'Novo Lançamento'}</h1>
-		
+
 		<h:form id="FrmCadastroLancamento">
 		
 			<h:button value="Novo" outcome="CadastroLancamento" />
@@ -157,5 +153,7 @@
 				</h:column>
 			</h:dataTable>		
 		</h:form>
-	</h:body>
-</html>
+		
+	</ui:define>
+	
+</ui:composition>
