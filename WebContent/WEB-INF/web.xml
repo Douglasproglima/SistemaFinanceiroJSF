@@ -57,4 +57,9 @@
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>
+  
+  <!-- Define a página inicial do sistema -->  
+  <welcome-file-list>
+  	<welcome-file>paginas/PaginaInicial.xhtml</welcome-file>
+  </welcome-file-list>
 </web-app>
