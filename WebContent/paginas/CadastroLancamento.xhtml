@@ -28,7 +28,7 @@
 			<h:messages showSummary="true" showDetail="false" styleClass="form-mensagens" 
 					   errorClass="erros" infoClass="info"/>
 
-			<h:panelGrid columns="2" styleClass="form-grid" columnClasses="label, campo">
+			<h:panelGrid id="panelCadastro" columns="2" styleClass="form-grid" columnClasses="label, campo">
 			
 				<h:outputLabel value="Tipo: "/>
 				<h:selectOneRadio value="#{cadastroLancamentosBean.lancamento.tipo}"
@@ -42,10 +42,10 @@
 
 				<h:outputLabel value="Status: "/>
 				<h:panelGroup>
-					<h:selectBooleanCheckbox id="idCheckBoxContaPagar" immediate="true" onchange="submit();"
+					<h:selectBooleanCheckbox id="idCheckBoxContaPagar" immediate="true"
 											 value="#{cadastroLancamentosBean.lancamento.pago}"
 											 valueChangeListener="#{cadastroLancamentosBean.lancamentoPagoAlterado}" 
-											 />
+											 onchange="jsf.ajax.request(this, event, {execute: '@form', render: 'FrmCadastroLancamento:panelCadastro'})"/>
 					<h:outputLabel for="idCheckBoxContaPagar" value="Conta paga"/>
 				</h:panelGroup>
 				
@@ -86,7 +86,9 @@
 				</h:inputText>
 				
 				<h:outputLabel/>
-				<h:commandButton value="Salvar" action="#{cadastroLancamentosBean.salvar}" />
+				<h:commandButton value="Salvar" action="#{cadastroLancamentosBean.salvar}" >
+					<f:ajax execute="@form" render="@all" />
+				</h:commandButton>
 			</h:panelGrid>
 		</h:form>			
 			
@@ -150,6 +152,7 @@
 						<h:graphicImage library="imagens" name="excluir.png" />
 						<f:setPropertyActionListener value="#{varLancamentos}" 
 													 target="#{consultaLancamentosBean.lancamentoSelecionado}" />
+						<f:ajax execute="@form" render="@all" />
 					</h:commandLink>
 				</h:column>
 			</h:dataTable>		
