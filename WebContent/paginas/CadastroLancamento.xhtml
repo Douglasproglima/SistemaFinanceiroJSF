@@ -5,7 +5,7 @@
 			    xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:dfComponentes="http://java.sun.com/jsf/composite/componentesPersonalizados" >
 
-	<ui:define name="titulo">Lançamento</ui:define>
+	<ui:define name="titulo">#{varMsg.lancamento}</ui:define>
 
 	<ui:define name="conteudo">
 		<f:metadata>
@@ -14,21 +14,21 @@
 
 		<h:outputStylesheet library="css" name="consultaLancamentos.css" />
 
-		<h1>#{cadastroLancamentosBean.editar ? 'Alterando Lançamento' : 'Novo Lançamento'}</h1>
+		<h1>#{cadastroLancamentosBean.editar ? varMsg.editando_lanc : varMsg.novo_lanc}</h1>
 
 		<h:form id="FrmCadastroLancamento">
 		
-			<h:button value="Novo" outcome="CadastroLancamento" />
-			<h:button value="Consulta" outcome="ConsultaLancamento" />
+			<h:button value="#{varMsg.novo_msg}" outcome="CadastroLancamento" />
+			<h:button value="#{varMsg.consulta}" outcome="ConsultaLancamento" />
 
 			<h:messages showSummary="true" showDetail="false" styleClass="form-mensagens" 
 					   errorClass="erros" infoClass="info"/>
 
 			<h:panelGrid id="panelCadastro" columns="2" styleClass="form-grid" columnClasses="label, campo">
 			
-				<h:outputLabel value="Tipo: "/>
+				<h:outputLabel value="#{varMsg.tipo}:"/>
 				<h:selectOneRadio value="#{cadastroLancamentosBean.lancamento.tipo}"
-								  required="true" label="Tipo do lançamento">
+								  required="true" label="#{varMsg.tipo_lanc}">
 					
 					<f:selectItems var="varTipoLancamento"
 								   value="#{cadastroLancamentosBean.tiposLancamentos}"
@@ -36,42 +36,42 @@
 								   itemValue="#{varTipoLancamento}" />
 				</h:selectOneRadio>
 
-				<h:outputLabel value="Status: "/>
+				<h:outputLabel value="#{varMsg.status}"/>
 				<h:panelGroup>
 					<h:selectBooleanCheckbox id="idCheckBoxContaPagar" immediate="true"
 											 value="#{cadastroLancamentosBean.lancamento.pago}"
 											 valueChangeListener="#{cadastroLancamentosBean.lancamentoPagoAlterado}" 
 											 onchange="jsf.ajax.request(this, event, {execute: '@form', render: 'FrmCadastroLancamento:panelCadastro'})"/>
-					<h:outputLabel for="idCheckBoxContaPagar" value="Conta paga"/>
+					<h:outputLabel for="idCheckBoxContaPagar" value="#{varMsg.conta_paga}"/>
 				</h:panelGroup>
 				
-				<h:outputLabel value="Receita"/>
-				<h:selectOneMenu value="#{cadastroLancamentosBean.lancamento.pessoa}" required="true" label="Pessoa">
-					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+				<h:outputLabel value="#{varMsg.pessoa}"/>
+				<h:selectOneMenu value="#{cadastroLancamentosBean.lancamento.pessoa}" required="true" label="#{varMsg.pessoa}">
+					<f:selectItem itemLabel="#{varMsg.selecione}" noSelectionOption="true" />
 					<f:selectItems var="varPessoa" itemValue="#{varPessoa}" itemLabel="#{varPessoa.nome}"
 								   value="#{cadastroLancamentosBean.pessoas}"/>
 				</h:selectOneMenu>
 				
-				<h:outputLabel value="Descrição"/>
+				<h:outputLabel value="#{varMsg.descricao}"/>
 				<h:inputText size="60" value="#{cadastroLancamentosBean.lancamento.descricao}" 
-							 required="true" label="Descrição" />
+							 required="true" label="#{varMsg.descricao}" />
 				
-				<h:outputLabel value="Valor"/>
+				<h:outputLabel value="#{varMsg.valor}"/>
 				<h:inputText size="12" value="#{cadastroLancamentosBean.lancamento.valor}" required="true" label="Valor">
 					
 					<f:convertNumber locale="pt_BR" maxFractionDigits="2" minFractionDigits="2" />
 					<f:validateDoubleRange minimum="0" />
 				</h:inputText>
 				
-				<h:outputLabel value="Data de vencimento" />
-				<h:inputText size="12" required="true" label="Data de vencimento"
+				<h:outputLabel value="#{varMsg.data_vencimento}" />
+				<h:inputText size="12" required="true" label="#{varMsg.data_vencimento}"
 							 value="#{cadastroLancamentosBean.lancamento.dataVencimento}">
 							 
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:inputText>
 				
-				<h:outputLabel value="Data de pagamento" rendered="#{cadastroLancamentosBean.lancamento.pago}"/>
-				<h:inputText size="12" label="Data de pagamento" 
+				<h:outputLabel value="#{varMsg.data_pagamento}" rendered="#{cadastroLancamentosBean.lancamento.pago}"/>
+				<h:inputText size="12" label="#{varMsg.data_pagamento}" 
 							 value="#{cadastroLancamentosBean.lancamento.dataPagamento}"
 							 rendered="#{cadastroLancamentosBean.lancamento.pago}">
 							 
@@ -82,7 +82,7 @@
 				</h:inputText>
 				
 				<h:outputLabel/>
-				<h:commandButton value="Salvar" action="#{cadastroLancamentosBean.salvar}" >
+				<h:commandButton value="#{varMsg.salvar}" action="#{cadastroLancamentosBean.salvar}" >
 					<f:ajax execute="@form" render="@all" />
 				</h:commandButton>
 			</h:panelGrid>
@@ -102,55 +102,55 @@
 				</h:column>
 				
 				<h:column>
-					<f:facet name="header">Receita</f:facet>
+					<f:facet name="header">#{varMsg.pessoa}</f:facet>
 					<h:outputText value="#{varLancamentos.pessoa.nome}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Descrição</f:facet>
+					<f:facet name="header">#{varMsg.descricao}</f:facet>
 					<h:outputText value="#{varLancamentos.descricao}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Valor Personalizado</f:facet>
+					<f:facet name="header">#{varMsg.valor_person}</f:facet>
 					<dfComponentes:outputVlrMonetario valor="#{varLancamentos.valor}" 
 													  styleClass="#{varLancamentos.tipo.toString().toLowerCase()}"/>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Valor Especif.</f:facet>
+					<f:facet name="header">#{varMsg.valor_espec}</f:facet>
 					<dfComponentes:outputVlrLancamento lancamentoBean="#{varLancamentos}"/>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Valor</f:facet>
+					<f:facet name="header">#{varMsg.valor}</f:facet>
 					<h:outputText value="#{varLancamentos.valor}" styleClass="#{varLancamentos.tipo.toString().toLowerCase()}">
 						<f:convertNumber currencyCode="BRL" type="currency" locale="pt_BR"/>
 					</h:outputText>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Data Vencimento</f:facet>
+					<f:facet name="header">#{varMsg.data_vencimento}</f:facet>
 					<h:outputText value="#{varLancamentos.dataVencimento}" >
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Data Pagamento</f:facet>
+					<f:facet name="header">#{varMsg.data_pagamento}</f:facet>
 					<h:outputText value="#{varLancamentos.dataPagamento}" >
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Status</f:facet>
+					<f:facet name="header">#{varMsg.status}</f:facet>
 					<h:outputText value="Pago" rendered="#{varLancamentos.pago}"/>
 					<h:outputText value="Pendente" rendered="#{not varLancamentos.pago}"/>
 				</h:column>
 				
 				<h:column>
-					<f:facet name="header">Opções</f:facet>
+					<f:facet name="header">#{varMsg.opcoes}</f:facet>
 					<h:link outcome="CadastroLancamento" >
 						<h:graphicImage library="imagens" name="editar.png" />					
 						<f:param name="varCodigo" value="#{varLancamentos.codigo}"/>

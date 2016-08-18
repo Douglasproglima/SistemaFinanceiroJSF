@@ -5,7 +5,7 @@
 			    xmlns:f="http://java.sun.com/jsf/core"
 			    xmlns:dfComponentes="http://java.sun.com/jsf/composite/componentesPersonalizados" >
 
-	<ui:define name="titulo">Consulta Lançamentos</ui:define>
+	<ui:define name="titulo">#{varMsg.consultaLan}</ui:define>
 
 	<ui:define name="conteudo">
 
@@ -15,14 +15,14 @@
 	
 		<h:outputStylesheet library="css" name="consultaLancamentos.css" />
 		
-		<h1>Listagem de Lançamentos</h1>
+		<h1>#{varMsg.listagemLanc}</h1>
 
 		<h:form id="FrmConsultaLancamento">
 
 			<h:messages showSummary="true" showDetail="false" styleClass="form-mensagens" 
 					   errorClass="erros" infoClass="info"/>
 
-			<h:button value="Novo Lançamento" outcome="CadastroLancamento"/>
+			<h:button value="#{varMsg.novo_lanc}" outcome="CadastroLancamento"/>
 			
 			<h:dataTable var="varLancamentos" value="#{consultaLancamentosBean.lancamentos}" 
 						 width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
@@ -33,51 +33,49 @@
 				</h:column>
 				
 				<h:column>
-					<f:facet name="header">Receita</f:facet>
+					<f:facet name="header">#{varMsg.pessoa}</f:facet>
 					<h:outputText value="#{varLancamentos.pessoa.nome}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Descrição</f:facet>
+					<f:facet name="header">#{varMsg.descricao}</f:facet>
 					<h:outputText value="#{varLancamentos.descricao}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Valor Personalizado</f:facet>
+					<f:facet name="header">#{varMsg.valor_person}</f:facet>
 					<dfComponentes:outputVlrMonetario valor="#{varLancamentos.valor}" 
 													  styleClass="#{varLancamentos.tipo.toString().toLowerCase()}"/>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Valor Especif.</f:facet>
+					<f:facet name="header">#{varMsg.valor_espec}</f:facet>
 					<dfComponentes:outputVlrLancamento lancamentoBean="#{varLancamentos}"/>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Valor</f:facet>
+					<f:facet name="header">#{varMsg.valor}</f:facet>
 					<h:outputText value="#{varLancamentos.valor}" styleClass="#{varLancamentos.tipo.toString().toLowerCase()}">
 						<f:convertNumber currencyCode="BRL" type="currency" locale="pt_BR"/>
 					</h:outputText>
 				</h:column>
 
-
-
 				<h:column>
-					<f:facet name="header">Data Vencimento</f:facet>
+					<f:facet name="header">#{varMsg.data_vencimento}</f:facet>
 					<h:outputText value="#{varLancamentos.dataVencimento}" >
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Data Pagamento</f:facet>
+					<f:facet name="header">#{varMsg.data_pagamento}</f:facet>
 					<h:outputText value="#{varLancamentos.dataPagamento}" >
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Status</f:facet>
+					<f:facet name="header">#{varMsg.status}</f:facet>
 					<h:outputText value="Pago" rendered="#{varLancamentos.pago}"/>
 					<h:outputText value="Pendente" rendered="#{not varLancamentos.pago}"/>
 				</h:column>
