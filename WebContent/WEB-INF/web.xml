@@ -79,4 +79,36 @@
   <security-role>
   	<role-name>consulta</role-name>
   </security-role>
+  
+  <!-- Configuração das Restrições de Segurança -->
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>Cadastro lançamento</web-resource-name>
+  		<url-pattern>/CadastroLancamento.xhtml</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>cadastro</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>Consulta lançamento</web-resource-name>
+  		<url-pattern>/ConsultaLancamento.xhtml</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>consulta</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>Home</web-resource-name>
+  		<url-pattern>/PaginaInicial.xhtml</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>cadastro</role-name>
+  		<role-name>consulta</role-name>
+  	</auth-constraint>
+  </security-constraint>  
 </web-app>
