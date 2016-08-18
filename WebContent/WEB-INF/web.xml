@@ -71,4 +71,12 @@
   		<form-error-page>/Login.xhtml</form-error-page>
   	</form-login-config>
   </login-config>
+  
+  <!-- Informações das permissões de acesso a cada página (Consulta e Lançamento) -->
+  <security-role>
+  	<role-name>cadastro</role-name>
+  </security-role>
+  <security-role>
+  	<role-name>consulta</role-name>
+  </security-role>
 </web-app>
