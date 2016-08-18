@@ -2,7 +2,8 @@
 				xmlns="http://www.w3.org/1999/xhtml"
 			    xmlns:h="http://java.sun.com/jsf/html"
 			    xmlns:ui="http://java.sun.com/jsf/facelets"
-			    xmlns:f="http://java.sun.com/jsf/core">
+			    xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:dfComponentes="http://java.sun.com/jsf/composite/componentesPersonalizados" >
 
 	<ui:define name="titulo">Consulta Lançamentos</ui:define>
 
@@ -33,7 +34,7 @@
 				</h:column>
 				
 				<h:column>
-					<f:facet name="header">Pessoa</f:facet>
+					<f:facet name="header">Receita</f:facet>
 					<h:outputText value="#{varLancamentos.pessoa.nome}" />
 				</h:column>
 
@@ -43,11 +44,19 @@
 				</h:column>
 
 				<h:column>
+					<f:facet name="header">Valor Personalizado</f:facet>
+					<dfComponentes:outputVlrMonetario valor="#{varLancamentos.valor}" 
+													  styleClass="#{varLancamentos.tipo.toString().toLowerCase()}"/>
+				</h:column>
+
+				<h:column>
 					<f:facet name="header">Valor</f:facet>
 					<h:outputText value="#{varLancamentos.valor}" styleClass="#{varLancamentos.tipo.toString().toLowerCase()}">
 						<f:convertNumber currencyCode="BRL" type="currency" locale="pt_BR"/>
 					</h:outputText>
 				</h:column>
+
+
 
 				<h:column>
 					<f:facet name="header">Data Vencimento</f:facet>
