@@ -1,0 +1,30 @@
+<!-- Tag html utilizada apenas para importar os namespaces 'xmlns' -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<!-- Interfase do componente: Algumas definições deste componente, exemplo: atributos -->			    
+	<composite:interface>
+		<composite:attribute name="valor" required="true" /> 
+		<composite:attribute name="localizacao" default="pt_BR" />
+		<composite:attribute name="simboloMoeda" default="R$"/>
+		<composite:attribute name="styleClass"/>
+	</composite:interface>
+	
+	<!-- Implementação do componente: Local onde será definido as tags de componentes visuais -->
+	<!-- Para associar o atributo valor ao <h:outputText value="" basta informar cc.sttrs.nomeComponente
+		cc -> componente;
+		attrs -> atributo;
+		nomeAtributo definido no <composite:attribute name="" />
+	-->
+	<composite:implementation>
+		<h:outputText value="#{cc.attrs.valor}" styleClass="#{cc.attrs.styleClass}">
+			<f:convertNumber locale="#{cc.attrs.localizacao}" 
+							 currencySymbol="#{cc.attrs.simboloMoeda}" 
+							 type="currency"/>
+		</h:outputText>
+	</composite:implementation>
+	
+</html>
