@@ -10,6 +10,11 @@
 	<application>
 		<message-bundle>com.douglasproglima.sistemafinanceiro.resources.validacao</message-bundle>
 		
+		<resource-bundle>
+			<base-name>com.douglasproglima.sistemafinanceiro.resources.sistema</base-name>
+			<var>varMsg</var>
+		</resource-bundle>
+		
 		<locale-config>
 			<default-locale>pt</default-locale>
 			<supported-locale>pt</supported-locale>
