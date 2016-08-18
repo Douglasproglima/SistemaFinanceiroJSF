@@ -13,9 +13,8 @@
 			<f:viewParam name="varCodigo" value="#{cadastroLancamentosBean.lancamento}"/>	
 		</f:metadata>
 	
-		<h:outputStylesheet library="css" name="sistemaConsultaLanc.css" />
 		<h:outputStylesheet library="css" name="consultaLancamentos.css" />
-
+		
 		<h1>Listagem de Lançamentos</h1>
 
 		<h:form id="FrmConsultaLancamento">
@@ -47,6 +46,11 @@
 					<f:facet name="header">Valor Personalizado</f:facet>
 					<dfComponentes:outputVlrMonetario valor="#{varLancamentos.valor}" 
 													  styleClass="#{varLancamentos.tipo.toString().toLowerCase()}"/>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Valor Especif.</f:facet>
+					<dfComponentes:outputVlrLancamento lancamentoBean="#{varLancamentos}"/>
 				</h:column>
 
 				<h:column>

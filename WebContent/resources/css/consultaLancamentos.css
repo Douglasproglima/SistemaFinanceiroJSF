@@ -4,11 +4,21 @@ td.tipo {
 }
 
 td.pessoa {
-	width: 200px;
+	width: 180px;
 }
 
 td.descricao {
-	
+	width: 400px;	
+}
+
+td.valor Personalizado{
+	width: 100px;
+	text-align: center;
+}
+
+td.valor Especif{
+	width: 100px;
+	text-align: center;
 }
 
 td.valor {
@@ -17,12 +27,12 @@ td.valor {
 }
 
 td.vencimento {
-	width: 120px;
+	width: 100px;
 	text-align: center;
 }
 
 td.pagamento {
-	width: 120px;
+	width: 100px;
 	text-align: center;
 }
 
@@ -32,7 +42,7 @@ td.situacao {
 }
 
 td.status{
-	width: 22px;
+	width: 10x;
 	text-align: left;
 }
 

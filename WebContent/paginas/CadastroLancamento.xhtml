@@ -13,7 +13,6 @@
 		</f:metadata>
 
 		<h:outputStylesheet library="css" name="consultaLancamentos.css" />
-		<h:outputStylesheet library="css" name="sistemaConsultaLanc.css" />
 
 		<h1>#{cadastroLancamentosBean.editar ? 'Alterando Lançamento' : 'Novo Lançamento'}</h1>
 
@@ -89,13 +88,14 @@
 			</h:panelGrid>
 		</h:form>			
 			
-			<br/>
+		<br/>
 			
 		<h:form id="FrmConsultaLancamento">
 			
 			<h:dataTable var="varLancamentos" value="#{consultaLancamentosBean.lancamentos}" 
 						 width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-						 columnClasses="tipo, pessoa, descricao, valor, vencimento, pagamento, status, opcoes">
+						 columnClasses="tipo, pessoa, descricao, valorPersonalizado, valorEspecif, 
+						 				valor, vencimento, pagamento, status, opcoes">
 				<h:column>
 					<h:graphicImage library="imagens" name="despesa.png" rendered="#{varLancamentos.tipo eq 'DESPESA'}"/>
 					<h:graphicImage library="imagens" name="receita.png" rendered="#{varLancamentos.tipo eq 'RECEITA'}"/>
@@ -115,6 +115,11 @@
 					<f:facet name="header">Valor Personalizado</f:facet>
 					<dfComponentes:outputVlrMonetario valor="#{varLancamentos.valor}" 
 													  styleClass="#{varLancamentos.tipo.toString().toLowerCase()}"/>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Valor Especif.</f:facet>
+					<dfComponentes:outputVlrLancamento lancamentoBean="#{varLancamentos}"/>
 				</h:column>
 
 				<h:column>
