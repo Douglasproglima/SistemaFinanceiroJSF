@@ -62,4 +62,13 @@
   <welcome-file-list>
   	<welcome-file>paginas/PaginaInicial.xhtml</welcome-file>
   </welcome-file-list>
+  
+  <!-- Informações do login -->
+  <login-config>
+  	<auth-method>FORM</auth-method>
+  	<form-login-config>
+  		<form-login-page>/Login.xhtml</form-login-page>
+  		<form-error-page>/Login.xhtml</form-error-page>
+  	</form-login-config>
+  </login-config>
 </web-app>
