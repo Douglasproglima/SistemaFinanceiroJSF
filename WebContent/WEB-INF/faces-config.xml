@@ -8,6 +8,13 @@
 
 	<!-- Tag para informa o local onde se encontra o arquivo contendo as mensagems de erro personalizadas -->
 	<application>
-		<message-bundle>com.douglasproglima.sistemafinanceiro.resources.Messages</message-bundle>
+		<message-bundle>com.douglasproglima.sistemafinanceiro.resources.validacao</message-bundle>
+		
+		<locale-config>
+			<default-locale>pt</default-locale>
+			<supported-locale>pt</supported-locale>
+			<supported-locale>en</supported-locale>
+			<supported-locale>jp</supported-locale>			
+		</locale-config>
 	</application>
 </faces-config>
