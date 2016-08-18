@@ -25,7 +25,7 @@ public class HibernateUtil {
 			//O método buildSessionFactory irá buscar uma fabrica de sessão que por final será atribuido a váriável fabricaSessao
 			fabricaSessao = configuracao.buildSessionFactory(servicoRegistro);	
 		} catch (Throwable erro) {
-			throw new ExceptionInInitializerError("Na inicialização da class Fabrica de Sessão ocorreu o seguinte erro: " + erro);
+			throw new ExceptionInInitializerError("msg_erro_hibernate" +": "+ erro);
 		}
 	}
 	

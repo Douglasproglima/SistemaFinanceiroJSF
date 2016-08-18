@@ -32,7 +32,7 @@
 					
 					<f:selectItems var="varTipoLancamento"
 								   value="#{cadastroLancamentosBean.tiposLancamentos}"
-								   itemLabel="#{varTipoLancamento.descricao}"
+								   itemLabel="#{varMsg[varTipoLancamento.descricao]}"
 								   itemValue="#{varTipoLancamento}" />
 				</h:selectOneRadio>
 

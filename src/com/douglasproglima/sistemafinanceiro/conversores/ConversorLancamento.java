@@ -9,6 +9,7 @@ import javax.faces.convert.FacesConverter;
 
 import com.douglasproglima.sistemafinanceiro.model.Lancamento;
 import com.douglasproglima.sistemafinanceiro.repositorio.FichaDeLancamentos;
+import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
 import com.douglasproglima.sistemafinanceiro.util.Repositorios;
 
 //Foi declarado que este conversor será utilizado específicamente para a class Lancamento
@@ -28,7 +29,7 @@ public class ConversorLancamento implements Converter{
 			
 			//Quando for converter de String para Objeto o lançamento não existir será lançado uma msg p/o user.
 			if (retornoLancamento == null) {
-				String msgErro = "Registro de lançamento não existe.";
+				String msgErro = FacesUtil.getMensagemI18N("msg_lancamento_nao_existe");
 				FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro);
 				throw new ConverterException(mensagem);
 			}

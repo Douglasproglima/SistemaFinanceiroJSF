@@ -39,7 +39,9 @@ public class ConversorDataPersonalizado implements Converter{
 				try {
 					dataConvertida =  formatador.parse(valor);
 				} catch (ParseException e) {
-					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Data Incorreta", "Informe uma data válida.");
+					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+														"Data Incorreta", 
+														"Informe uma data válida.");
 					throw new ConverterException(msg);
 				}
 			 }

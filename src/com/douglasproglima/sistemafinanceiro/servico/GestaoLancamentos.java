@@ -25,7 +25,7 @@ public class GestaoLancamentos {
 	
 	public void salvar(Lancamento lancamento) throws RegraNegocioException{
 		if (existeLancamentoIgual(lancamento)) {
-			throw new RegraNegocioException("Já existe um registro igual a este!");
+			throw new RegraNegocioException("msg_lancamento_existente");
 		}
 		
 		this.fichaDeLancamentos.guardar(lancamento);
@@ -33,7 +33,7 @@ public class GestaoLancamentos {
 	
 	public void excluir(Lancamento lancamento) throws RegraNegocioException{
 		if (lancamento.isPago()) {
-			throw new RegraNegocioException("Lançamento pago não pode ser excluído!");
+			throw new RegraNegocioException("msg_impedir_exclusao");
 		} else {
 			this.fichaDeLancamentos.remover(lancamento);
 		}

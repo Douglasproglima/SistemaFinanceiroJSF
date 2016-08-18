@@ -43,10 +43,12 @@ public class CadastroLancamentosBean implements Serializable{
 			
 			this.lancamento = new Lancamento(); //Limpa a tela
 			
-			String msg = "Lançamento realizado com sucesso!";
+			String msg = FacesUtil.getMensagemI18N("msg_lancamento_salvo");
 			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, msg, msg);
 		} catch (RegraNegocioException erro) {
-			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, erro.getMessage(), erro.getMessage());
+			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, 
+										FacesUtil.getMensagemI18N(erro.getMessage()), 
+										FacesUtil.getMensagemI18N(erro.getMessage()));
 		}
 	}
 	

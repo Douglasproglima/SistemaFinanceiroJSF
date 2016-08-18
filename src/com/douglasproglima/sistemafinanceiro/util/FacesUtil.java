@@ -26,4 +26,12 @@ public class FacesUtil {
 		//Todo o procedimento acima necessário para buscar o objeto request da Class
 		return requisicao.getAttribute(nomeAtributoSessaoDoFilter);
 	}
+
+	//Método para traduzir a mensagem pela internacionalização
+	public static String getMensagemI18N(String chave){
+		FacesContext context = FacesContext.getCurrentInstance();
+		String msg = context.getApplication().getResourceBundle(context, "varMsg").getString(chave);
+		
+		return msg;
+	}
 }

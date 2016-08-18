@@ -9,6 +9,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import com.douglasproglima.sistemafinanceiro.util.FacesUtil;
 import com.sun.faces.util.MessageFactory;
 
 @FacesValidator("com.douglasproglima.DataFutura")
@@ -21,7 +22,7 @@ public class ValidarDataFutura implements Validator{
 		if(data != null && data.after(new Date())){
 			Object label = MessageFactory.getLabel(context, componente); //Retorna o nome do label configurado na página
 			
-			String descricaoErro = label + " não pode ser uma maior que  a data atual.";
+			String descricaoErro = label + " " + FacesUtil.getMensagemI18N("msg_data_futura");
 			
 			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, descricaoErro, descricaoErro);
 			
