@@ -35,10 +35,12 @@ public class ConsultaLancamentosBean {
 			this.iniciar();
 			
 			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_INFO, 
-										"Lançamento Excluído com sucesso!", 
-										"Lançamento Excluído com sucesso!");
+										FacesUtil.getMensagemI18N("msg_exclusao"), 
+										FacesUtil.getMensagemI18N("msg_exclusao"));
 		} catch (RegraNegocioException erro) {
-			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, erro.getMessage(), erro.getMessage());
+			FacesUtil.adicionarMensagem(FacesMessage.SEVERITY_ERROR, 
+										FacesUtil.getMensagemI18N(erro.getMessage()), 
+										FacesUtil.getMensagemI18N(erro.getMessage()));
 		}
 		
 //		if (this.lancamentoSelecionado.isPago()) {
