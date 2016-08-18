@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Realm className="org.apache.catalina.realm.JDBCRealm"
+			 	  driverName="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/sistemafinanceirojsf"
+				  connectionName="root" connectionPassword="root"
+				  userTable="usuario" userNameCol="nome_usuario"
+				  userCredCol="senha" userRoleTable="permissao_usuario"
+				  roleNameCol="nome_permissao"
+	/>
+</Context>
