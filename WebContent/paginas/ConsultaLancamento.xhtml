@@ -22,7 +22,7 @@
 			<h:messages showSummary="true" showDetail="false" styleClass="form-mensagens" 
 					   errorClass="erros" infoClass="info"/>
 
-			<h:button value="#{varMsg.novo_lanc}" outcome="CadastroLancamento"/>
+			<h:button value="#{varMsg.novo_lanc}" outcome="CadastroLancamento" rendered="#{request.isUserInRole('cadastro')}"/>
 			
 			<h:dataTable var="varLancamentos" value="#{consultaLancamentosBean.lancamentos}" 
 						 width="100%" styleClass="grid" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
