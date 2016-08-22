@@ -110,11 +110,5 @@
   		<role-name>cadastro</role-name>
   		<role-name>consulta</role-name>
   	</auth-constraint>
-  </security-constraint> 
-  
-  <!-- Informa a página referente a permissão de acesso onde o usuário será redirecionado a página do erro 403 -->
-  <error-page>
-  	<error-code>403</error-code>
-  	<location>/paginas/403.xhtml</location>
-  </error-page> 
+  </security-constraint>  
 </web-app>
