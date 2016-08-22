@@ -60,15 +60,15 @@
   
   <!-- Define a página inicial do sistema -->  
   <welcome-file-list>
-  	<welcome-file>paginas/PaginaInicial.xhtml</welcome-file>
+  	<welcome-file>paginas/Login.xhtml</welcome-file>
   </welcome-file-list>
   
   <!-- Informações do login -->
   <login-config>
   	<auth-method>FORM</auth-method>
   	<form-login-config>
-  		<form-login-page>/Login.xhtml</form-login-page>
-  		<form-error-page>/Login.xhtml</form-error-page>
+  		<form-login-page>/paginas/Login.xhtml</form-login-page>
+  		<form-error-page>/paginas/Login.xhtml</form-error-page>
   	</form-login-config>
   </login-config>
   
@@ -83,8 +83,8 @@
   <!-- Configuração das Restrições de Segurança -->
   <security-constraint>
   	<web-resource-collection>
-  		<web-resource-name>Cadastro lançamento</web-resource-name>
-  		<url-pattern>/CadastroLancamento.xhtml</url-pattern>
+  		<web-resource-name>Cadastro Lançamento</web-resource-name>
+  		<url-pattern>/paginas/CadastroLancamento.xhtml</url-pattern>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>cadastro</role-name>
@@ -93,8 +93,8 @@
   
   <security-constraint>
   	<web-resource-collection>
-  		<web-resource-name>Consulta lançamento</web-resource-name>
-  		<url-pattern>/ConsultaLancamento.xhtml</url-pattern>
+  		<web-resource-name>Consulta Lançamento</web-resource-name>
+  		<url-pattern>/paginas/ConsultaLancamento.xhtml</url-pattern>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>consulta</role-name>
@@ -103,8 +103,8 @@
   
   <security-constraint>
   	<web-resource-collection>
-  		<web-resource-name>Home</web-resource-name>
-  		<url-pattern>/PaginaInicial.xhtml</url-pattern>
+  		<web-resource-name>Início</web-resource-name>
+  		<url-pattern>/paginas/PaginaInicial.xhtml</url-pattern>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>cadastro</role-name>

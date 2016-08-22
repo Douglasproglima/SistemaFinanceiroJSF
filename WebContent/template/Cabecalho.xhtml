@@ -8,9 +8,16 @@
 	</h:link>
 
 	<div class="menu">
-		<h:link outcome="PaginaInicial">#{varMsg.home}</h:link>
-		<h:link outcome="CadastroLancamento">#{varMsg.lancamento}</h:link>
-		<h:link outcome="ConsultaLancamento">#{varMsg.consultaLan}</h:link>
+		<h:form>
+			<h:outputFormat value="#{varMsg.ola}" styleClass="loggd-user">
+				<f:param value="#{facesContext.externalContext.userPrincipal.name}"/>
+			</h:outputFormat>
+		
+			<h:link outcome="PaginaInicial">#{varMsg.home}</h:link>
+			<h:link outcome="CadastroLancamento">#{varMsg.lancamento}</h:link>
+			<h:link outcome="ConsultaLancamento">#{varMsg.consultaLan}</h:link>
+			<h:commandLink action="#{segurancaBean.sair}">#{varMsg.sair}</h:commandLink>		
+		</h:form>
 	</div>
 
 </ui:composition>
