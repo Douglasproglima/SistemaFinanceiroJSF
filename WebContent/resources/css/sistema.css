@@ -9,10 +9,36 @@ a {
 	color: #003399;
 }
 
+#paginaInicial{
+	background-image: url(../imagens/BemVindo.jpg);
+	background-size:  cover;
+	background-position: center;
+	
+	min-width: 974px; 
+	min-height: 400px;
+	width: 70%;
+	height: 65%;
+	image-rendering: optimizeSpeed; 
+	comentheight:auto; 
+	position: absolute;
+}
+
+#login{
+	background-image: url(../imagens/background.jpg);
+	min-width: 974px; 
+	min-height: 400px;
+	width: 99%;
+	height: 98%;
+	 background-size: cover; 
+	image-rendering: optimizeSpeed; 
+	comentheight:auto; 
+	position: absolute;
+}
+
 #conteudo h1 {
 	background: url(../imagens/tela.png) no-repeat 0px 3px;
 	padding-left: 24px;
-	font-size: 20px;
+	font-size: 24px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: #3e3e3e;
@@ -129,6 +155,6 @@ ul.form-mensagens {
 	
 	font-size: 14px;
 	font-color: #9b9b9b;
-	margin-top: 10px;
+	margin-top: 20px;
 	border-top: 1px solid #cfcfcf;
 }

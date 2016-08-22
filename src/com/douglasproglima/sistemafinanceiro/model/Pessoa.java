@@ -20,6 +20,9 @@ public class Pessoa implements Serializable{
 	@Column(name="nome", length=100, nullable=false)
 	private String nome;
 	
+	@Column(name="cpf", length=14, nullable=false)
+	private String cpf;
+	
 	//Construtor default
 	public Pessoa(){
 		
@@ -29,6 +32,12 @@ public class Pessoa implements Serializable{
 	public Pessoa(Integer codigo, String nome){
 		this.codigo = codigo;
 		this.nome = nome;
+	}
+	
+	public Pessoa(Integer codigo, String nome, String cpf){
+		this.codigo = codigo;
+		this.nome = nome;
+		this.cpf = cpf;
 	}
 	
 	//Métodos getters e setters Bean
@@ -45,8 +54,14 @@ public class Pessoa implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 	
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,0 +1,53 @@
+<ui:composition template="/template/LayoutPadrao.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:dfComponentes="http://java.sun.com/jsf/composite/componentesPersonalizados" >
+
+	<ui:define name="titulo">#{varMsg.lancamento}</ui:define>
+
+	<ui:define name="conteudo">
+		<f:metadata>
+			<f:viewParam name="varCodigo" value="#{cadastroReceitaBean.pessoa}"/>	
+		</f:metadata>
+
+		<h:outputStylesheet library="css" name="consultaLancamentos.css" />
+
+		<h1>#{cadastroReceitaBean.editar ? varMsg.editando_lanc : varMsg.novo_lanc}</h1>
+
+		<h:form id="FrmCadastroPessoa">
+		
+			<h:button value="#{varMsg.novo_msg}" outcome="CadastroPessoa"  rendered="#{request.isUserInRole('cadastro')}"/>
+			<h:button value="#{varMsg.consulta}" outcome="ConsultaPessoa" rendered="#{request.isUserInRole('consulta')}"/>
+
+			<h:messages showSummary="true" showDetail="false" styleClass="form-mensagens" 
+					   errorClass="erros" infoClass="info"/>
+
+			<h:panelGrid id="panelCadastro" columns="2" styleClass="form-grid" columnClasses="label, campo">
+		
+				<h:outputLabel value="#{varMsg.codigo}"/>
+				<h:inputText size="12" value="#{cadastroReceitaBean.pessoa.codigo}" 
+							 required="true" label="#{varMsg.codigo}" />
+				
+				<h:outputLabel value="#{varMsg.nome}"/>
+				<h:inputText size="60" value="#{cadastroReceitaBean.pessoa.nome}" 
+							 required="true" label="#{varMsg.nome}" />
+				
+				<h:outputLabel value="#{varMsg.cpf}"/>
+				<p:inputMask id="idCPF" value="#{cadastroReceitaBean.pessoa.cpf}" size="12" 
+							 mask="999.999.999-99" required="true" label="#{varMsg.cpf}"/>
+							 
+				<h:outputLabel/>
+				<h:commandButton value="#{varMsg.salvar}" action="#{cadastroReceitaBean.salvar}" >
+					<f:ajax execute="@form" render="@all" />
+				</h:commandButton>
+			</h:panelGrid>
+		</h:form>			
+			
+		<br/>
+	
+	</ui:define>
+	
+</ui:composition>

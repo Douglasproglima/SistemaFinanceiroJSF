@@ -11,29 +11,36 @@
 		<h:outputStylesheet library="css" name="sistema.css"/>
 	</h:head>
 	<h:body>
-		<div id="content">
-			<div style="width: 240px; margin-left: auto; margin-right: auto; margin-top: 150px">
-				<h1>#{varMsg.login}</h1>
 		
-				<h:form id="frm">
-		
-					<h:messages showDetail="false" showSummary="true" 
-						styleClass="form-messages" errorClass="error"/>
-		
-					<h:panelGrid columns="2" styleClass="form-grid" style="padding: 10px"
-							columnClasses="label, campo" id="panel">
-					
-						<h:outputLabel value="#{varMsg.usuario}"/>
-						<h:inputText value="#{segurancaBean.usuario}" size="20"/>
+		<div id="login">
+
+			<div id="conteudo">
+	
+				<div style="width: 240px; margin-left: auto; margin-right: auto; margin-top: 150px">
+					<h1>#{varMsg.login}</h1>
+			
+					<h:form id="frm">
+			
+						<h:messages showDetail="false" showSummary="true" 
+							styleClass="form-messages" errorClass="error"/>
+			
+						<h:panelGrid columns="2" styleClass="form-grid" style="padding: 10px"
+								columnClasses="label, campo" id="panel">
 						
-						<h:outputLabel value="#{varMsg.senha}"/>
-						<h:inputSecret value="#{segurancaBean.senha}" size="20"/>
-						
-						<h:panelGroup/>
-						<h:commandButton value="#{varMsg.login}" action="#{segurancaBean.logar}"/>
-					</h:panelGrid>
-				</h:form>
+							<h:outputLabel value="#{varMsg.usuario}"/>
+							<h:inputText value="#{segurancaBean.usuario}" size="20"/>
+							
+							<h:outputLabel value="#{varMsg.senha}"/>
+							<h:inputSecret value="#{segurancaBean.senha}" size="20"/>
+							
+							<h:panelGroup/>
+							<h:commandButton value="#{varMsg.login}" action="#{segurancaBean.logar}"/>
+						</h:panelGrid>
+					</h:form>
+				</div>
 			</div>
+
 		</div>
+		
 	</h:body>
 </html>

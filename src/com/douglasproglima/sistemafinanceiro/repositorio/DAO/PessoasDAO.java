@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import com.douglasproglima.sistemafinanceiro.model.Pessoa;
 import com.douglasproglima.sistemafinanceiro.repositorio.FichaDePessoas;
@@ -27,5 +28,24 @@ public class PessoasDAO implements FichaDePessoas{
 	@Override
 	public Pessoa consultaPorCodigo(Integer codigo) {
 		return (Pessoa) sessao.get(Pessoa.class, new Integer(codigo));
+	}
+
+	@Override
+	public Pessoa comDadosIguais(Pessoa pessoa) {
+		
+		return (Pessoa) this.sessao.createCriteria(Pessoa.class)
+									     .add(Restrictions.eq("nome", pessoa.getNome()))
+									     .add(Restrictions.eq("cpf", pessoa.getCpf()))
+									     .uniqueResult();
+	}
+
+	@Override
+	public Pessoa guardar(Pessoa pessoa) {
+		return (Pessoa) sessao.merge(pessoa);
+	}
+
+	@Override
+	public void remover(Pessoa pessoa) {
+		this.sessao.delete(pessoa);	
 	}
 }
